@@ -1,0 +1,24 @@
+{
+  "name": "p4-chatterbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass -w ./client/src/style/scss:./client/src/style/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dphoeng/p4-chatterbox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dphoeng/p4-chatterbox/issues"
+  },
+  "homepage": "https://github.com/dphoeng/p4-chatterbox#readme",
+  "devDependencies": {
+    "sass": "^1.51.0"
+  }
+}

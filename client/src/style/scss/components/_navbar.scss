@@ -1,0 +1,55 @@
+$navbar-height: 50px;
+$gap: 5px;
+
+.icon {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  height: 100%;
+  img {
+    height: 100%;
+  }
+}
+
+nav {
+  background-color: var(--surface-2);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: $navbar-height;
+  padding: $gap 16px;
+}
+
+.nav-search {
+  display: flex;
+  gap: $gap;
+  > div {
+    > span {
+      display: none;
+    }
+  }
+  .searchbar {
+    height: 100%;
+    padding: 0 12px;
+    display: flex;
+    gap: $gap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface-3);
+    border-radius: 100vh;
+    input {
+      border: none;
+      outline: none;
+      background: none;
+    }
+  }
+  &.active {
+    > div {
+      position: absolute;
+      background-color: var(--surface-2);
+    }
+    .searchbar {
+      span {
+        display: none;
+      }
+    }
+  }
+}

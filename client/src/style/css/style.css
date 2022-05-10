@@ -1,0 +1,60 @@
+.icon {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  height: 100%;
+}
+.icon img {
+  height: 100%;
+}
+
+nav {
+  background-color: var(--surface-2);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 50px;
+  padding: 5px 16px;
+}
+
+.nav-search {
+  display: flex;
+  gap: 5px;
+}
+.nav-search > div > span {
+  display: none;
+}
+.nav-search .searchbar {
+  height: 100%;
+  padding: 0 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-3);
+  border-radius: 100vh;
+}
+.nav-search .searchbar input {
+  border: none;
+  outline: none;
+  background: none;
+}
+.nav-search.active > div {
+  position: absolute;
+  background-color: var(--surface-2);
+}
+.nav-search.active .searchbar span {
+  display: none;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--surface-1);
+}
+
+/*# sourceMappingURL=style.css.map */
