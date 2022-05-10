@@ -1,48 +1,135 @@
 .icon {
   border-radius: 50%;
   aspect-ratio: 1;
-  height: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.icon svg,
 .icon img {
   height: 100%;
+  width: 100%;
+  margin: auto;
 }
 
 nav {
   background-color: var(--surface-2);
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 320px 1fr 320px;
+  grid-template-areas: "a b c";
   height: 50px;
   padding: 5px 16px;
 }
 
 .nav-search {
+  grid-area: a;
   display: flex;
   gap: 5px;
 }
-.nav-search > div > span {
+.nav-search > div button {
   display: none;
 }
 .nav-search .searchbar {
-  height: 100%;
-  padding: 0 12px;
+  height: 40px;
+  padding: 0 10px;
+  width: 265px;
   display: flex;
   gap: 5px;
   align-items: center;
-  justify-content: center;
   background-color: var(--surface-3);
   border-radius: 100vh;
 }
 .nav-search .searchbar input {
   border: none;
-  outline: none;
   background: none;
+}
+.nav-search #search-content {
+  display: none;
+}
+.nav-search.active #search-content {
+  display: block;
+}
+.nav-search.active input {
+  width: 100%;
 }
 .nav-search.active > div {
   position: absolute;
+  inset: 0 auto auto auto;
+  padding: 5px;
+  margin-left: -5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   background-color: var(--surface-2);
+  border-radius: 10px;
 }
-.nav-search.active .searchbar span {
+.nav-search.active > div button {
+  display: block;
+}
+.nav-search.active > div > div {
+  display: flex;
+  gap: 5px;
+}
+.nav-search.active .searchbar {
+  padding: 0 18px;
+}
+.nav-search.active .searchbar svg {
   display: none;
+}
+.nav-search.active .search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-navigation {
+  grid-area: b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.nav-navigation a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 150px;
+  height: 45px;
+  border-radius: 10px;
+}
+.nav-navigation a:hover, .nav-navigation a:focus {
+  background-color: var(--surface-3);
+}
+
+.nav-extra {
+  grid-area: c;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+
+.user-button {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+  background-color: var(--surface-3);
+  border-radius: 100vh;
+}
+.user-button h6 {
+  font-size: 1rem;
+}
+.user-button .user-icon {
+  width: 30px;
+  height: 30px;
+}
+.user-button .user-icon > * {
+  width: 30px;
+  height: 30px;
 }
 
 *,
