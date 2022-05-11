@@ -6,11 +6,11 @@ require_once "./functions.inc.php";
 if (isset($_POST["submit"])) {
 
 	// First we get the form data from the URL
-	$naam = sanitize($_POST["naam"]);
-	$email = sanitize($_POST["email"]);
-	$username = sanitize($_POST["uid"]);
-	$pwd = sanitize($_POST["pwd"]);
-	$pwdrepeat = sanitize($_POST["pwdrepeat"]);
+	$naam = sanitize($conn, $_POST["naam"]);
+	$email = sanitize($conn, $_POST["email"]);
+	$username = sanitize($conn, $_POST["uid"]);
+	$pwd = sanitize($conn, $_POST["pwd"]);
+	$pwdrepeat = sanitize($conn, $_POST["pwdrepeat"]);
 
 	// Then we run a bunch of error handlers to catch any user mistakes we can
 

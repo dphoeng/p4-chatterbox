@@ -7,8 +7,8 @@ function checkIfExists($conn, $rowToCheck, $check) {
   $sql = "SELECT * FROM users WHERE $rowToCheck = ?;";
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-	 	// header("location: ../components/register.php?error=stmtfailed");
-		// exit();
+	 	header("location: ../components/register.php?error=stmtfailed");
+		exit();
 	}
 
 	mysqli_stmt_bind_param($stmt, "s", $check);
@@ -27,9 +27,54 @@ function checkIfExists($conn, $rowToCheck, $check) {
 }
 
 // sanitize user input fields, prevents code injections
-function sanitize($raw_data) {
-	global $conn;
+function sanitize($conn, $raw_data) {
 	return (trim(htmlspecialchars(mysqli_real_escape_string($conn, $raw_data))));
+}
+
+// uploads file into $file
+function uploadFile($conn, $file, $imageId) {
+
+	// server upload location
+	$target_dir = "../src/img/uploads/" . $file . "/";
+
+	// database location string
+	$save_dir = "./src/img/uploads/" . $file . "/";
+	$imageFileType = strtolower(pathinfo(basename($_FILES[$file]["name"]),PATHINFO_EXTENSION));
+	
+	$target_file = $target_dir . $imageId . '.' . $imageFileType;
+	$save_file = $save_dir . $imageId . '.' . $imageFileType;
+	
+	// allowed types
+	$typeArray = array("jpg", "png", "jpeg", "gif");
+	
+	$check = getimagesize($_FILES[$file]["tmp_name"]);
+	if ($check !== false) {
+		if ($_FILES[$file]["size"] < 5000000) {
+			if (in_array($imageFileType, $typeArray)) {
+				if (move_uploaded_file($_FILES[$file]["tmp_name"], $target_file)) {
+					echo "The file ". htmlspecialchars(basename($_FILES[$file]["name"])). " has been uploaded.";
+				} else {
+					echo "image not uploaded";
+				}
+			} else {
+				echo "Wrong filetype";
+			}
+		} else {
+			echo "File is too large";
+		}
+	} else {
+		echo "File is not an image.";
+	}
+
+	$stmt = $conn->prepare("UPDATE users SET {$file} = ? WHERE usersId = ?");
+	$stmt->bind_param("si", $save_file, $_SESSION['id']);
+
+	if ($stmt->execute()) {
+		header("Location: ../index.php");
+	} else {
+		header("Location: ../index.php");
+	}
+	
 }
 
 ?>
