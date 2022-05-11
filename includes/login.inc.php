@@ -25,7 +25,7 @@ if (empty($email) || empty($password)) {
 		} else {
 			$_SESSION["id"] = $record["usersId"];
 			$_SESSION["role"] = $record["role"];
-			header("Location: ../components/test.php");
+			header("Refresh: 0; ../index.php?content=content/home");
 		}
 	}
 }
