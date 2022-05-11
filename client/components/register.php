@@ -25,9 +25,7 @@ if (isset($_SESSION["id"])) {
 <body>
 	<main>
 		<form action="../includes/signup.inc.php" method="post" id="form">
-			<input type="text" name="voornaam" placeholder="Voornaam" required>
-			<input type="text" name="tussenvoegsel" placeholder="Tussenvoegsel">
-			<input type="text" name="achternaam" placeholder="Achternaam" required>
+			<input type="text" name="naam" placeholder="Volledige naam" required>
 			<input type="mail" name="email" placeholder="E-Mail" required>
 			<input type="text" name="uid" placeholder="Gebruikersnaam" maxlength="16" required>
 			<input type="password" name="pwd" placeholder="Wachtwoord" required>

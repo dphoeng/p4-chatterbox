@@ -6,9 +6,7 @@ require_once "./functions.inc.php";
 if (isset($_POST["submit"])) {
 
 	// First we get the form data from the URL
-	$voornaam = sanitize($_POST["voornaam"]);
-	$tussenvoegsel = sanitize($_POST["tussenvoegsel"]);
-	$achternaam = sanitize($_POST["achternaam"]);
+	$naam = sanitize($_POST["naam"]);
 	$email = sanitize($_POST["email"]);
 	$username = sanitize($_POST["uid"]);
 	$pwd = sanitize($_POST["pwd"]);
@@ -17,7 +15,7 @@ if (isset($_POST["submit"])) {
 	// Then we run a bunch of error handlers to catch any user mistakes we can
 
 	// Left inputs empty
-	if (empty($voornaam) || empty($achternaam) || empty($email) || empty($username) || empty($pwd) || empty($pwdrepeat)) {
+	if (empty($naam) || empty($email) || empty($username) || empty($pwd) || empty($pwdrepeat)) {
 		header("location: ../components/register.php?error=emptyinput");
 	}
 
@@ -50,20 +48,21 @@ if (isset($_POST["submit"])) {
 	// If we get to here, it means there are no user errors
 
 	// Insert new user into database
-	$sql = "INSERT INTO users (nickname, firstname, infix, lastname, email, password, role) VALUES (?, ?, ?, ?, ?, ?, 'user');";
+	$sql = "INSERT INTO users (nickname, name, email, password, role) VALUES (?, ?, ?, ?, 'user');";
 
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-	// 	header("location: ../components/register.php?error=stmtfailed");
-	// 	exit();
+		header("location: ../components/register.php?error=stmtfailed");
+		exit();
 	}
 
 	$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-	mysqli_stmt_bind_param($stmt, "ssssss", $username, $voornaam, $tussenvoegsel, $achternaam, $email, $hashedPwd);
+	mysqli_stmt_bind_param($stmt, "ssss", $username, $naam, $email, $hashedPwd);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	mysqli_close($conn);
+	echo "w";
 	header("location: ../components/login.php");
 } else {
 	header("location: ../components/register.php");
