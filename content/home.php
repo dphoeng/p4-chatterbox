@@ -1,6 +1,6 @@
 <main>
 
   hello world
-  <a href="./index.php?content=content/uploadtest">test</a>
+  <a href="./index.php?content=content/profielEdit">test</a>
 
 </main>
