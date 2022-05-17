@@ -31,6 +31,6 @@ session_start();
 
   <?php include('./components/content.php'); ?>
 
-  < </body>
+</body>
 
 </html>

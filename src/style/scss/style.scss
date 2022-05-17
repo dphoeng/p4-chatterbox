@@ -9,5 +9,55 @@
 }
 
 body {
+  display: grid;
+  grid-template-areas: 
+  "n n n"
+  ". c .";
+  grid-template-columns: minmax(1rem, 1fr) minmax(1px, 680px) minmax(1rem, 1fr);
+  grid-template-rows: 50px 1fr;
   background-color: var(--surface-1)
+}
+
+nav {
+  grid-area: n;
+}
+
+main {
+  grid-area: c;
+}
+
+.iconSmall {
+  width: 20px;
+  height: 20px;
+  // background-color: rgb(255, 255, 255);
+  border-radius: 100%;
+  * {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.iconMedium {
+  width: 40px;
+  height: 40px;
+  // background-color: rgb(255, 255, 255);
+  border-radius: 100%;
+  * {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.iconLarge {
+  width: 130px;
+  height: 130px;
+  // background-color: rgb(255, 255, 255);
+  border-radius: 100%;
+  * {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+  }
 }
