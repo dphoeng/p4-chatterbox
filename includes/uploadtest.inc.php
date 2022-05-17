@@ -36,13 +36,29 @@ if (isset($_POST["submit"])) {
 		}
 	}
 
-	// check whether avatar and background were uploaded, if it is, enter the uploadFile function
+	// check whether avatar and/or background were uploaded, if it is, 
+	// enter the uploadFile function, which uploads the files and puts the right path in the database
 	if ($_FILES["avatar"]["error"] == 0) {
 		uploadFile($conn, "avatar", $avatarId);
 	}
 	if ($_FILES["background"]["error"] == 0) {
 		uploadFile($conn, "background", $backgroundId);
 	}
+
+	// upload the other user input into database
+	$stmt = $conn->prepare("UPDATE users SET nickname = ?, birthday = ?, bio = ? WHERE usersId = ?");
+	$stmt->bind_param("sssi", $_POST["nickname"], $_POST["birthday"], $_POST["bio"], $_SESSION["id"]);
+
+	if ($stmt->execute()) {
+		header("Location: ../index.php");
+	} else {
+		header("Location: ../index.php");
+	}
+}
+
+if ($stmt->execute()) {
+
+
 } else {
 	header("Location: ../components/content.php");
 	exit();

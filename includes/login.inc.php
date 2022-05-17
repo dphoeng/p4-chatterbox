@@ -5,8 +5,8 @@ include("./functions.inc.php");
 session_start();
 
 
-$email = sanitize($_POST["uid"]);
-$password = sanitize($_POST["pwd"]);
+$email = sanitize($conn, $_POST["uid"]);
+$password = sanitize($conn, $_POST["pwd"]);
 
 if (empty($email) || empty($password)) {
 	// empty post fields

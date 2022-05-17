@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require('./includes/connect.php');
 
 ?>
 
@@ -31,6 +32,6 @@ session_start();
 
   <?php include('./components/content.php'); ?>
 
-  < </body>
+  </body>
 
 </html>
