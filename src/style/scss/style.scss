@@ -9,6 +9,7 @@
 }
 
 body {
+  position: relative;
   display: grid;
   grid-template-areas: 
   "n n n"
@@ -20,10 +21,12 @@ body {
 
 nav {
   grid-area: n;
+  z-index: 2;
 }
 
 main {
   grid-area: c;
+  z-index: 1;
 }
 
 .iconSmall {

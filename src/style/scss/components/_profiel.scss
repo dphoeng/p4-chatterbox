@@ -16,6 +16,7 @@ $padding: 17px;
       gap: 10px;
     }
     .nav {
+      display: flex;
       height: 48px;
       ul {
         height: 100%;
@@ -67,7 +68,19 @@ $padding: 17px;
           }
         }
       }
-  
+      > button {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: none;
+        &:hover,
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
     }
     border-radius: 10px;
     background-color: var(--surface-2);
@@ -128,4 +141,12 @@ $padding: 17px;
 
 .profiel-icon {
   margin-top: -57px;
+}
+
+.profiel-background::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 0;
+  background: blue;
+  z-index: -1;
 }

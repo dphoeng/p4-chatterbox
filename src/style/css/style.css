@@ -151,6 +151,7 @@ nav {
   gap: 10px;
 }
 .profiel-page .profiel .nav {
+  display: flex;
   height: 48px;
 }
 .profiel-page .profiel .nav ul {
@@ -201,6 +202,18 @@ nav {
   height: 2px;
   border-radius: 2px 2px 0 0;
   background-color: #3754CD;
+}
+.profiel-page .profiel .nav > button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: none;
+}
+.profiel-page .profiel .nav > button:hover, .profiel-page .profiel .nav > button:focus {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .profiel-page .content div {
   height: 100%;
@@ -255,6 +268,14 @@ nav {
   margin-top: -57px;
 }
 
+.profiel-background::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 0;
+  background: blue;
+  z-index: -1;
+}
+
 *,
 *::after,
 *::before {
@@ -264,6 +285,7 @@ nav {
 }
 
 body {
+  position: relative;
   display: grid;
   grid-template-areas: "n n n" ". c .";
   grid-template-columns: minmax(1rem, 1fr) minmax(1px, 680px) minmax(1rem, 1fr);
@@ -273,10 +295,12 @@ body {
 
 nav {
   grid-area: n;
+  z-index: 2;
 }
 
 main {
   grid-area: c;
+  z-index: 1;
 }
 
 .iconSmall {
