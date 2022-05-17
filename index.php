@@ -32,6 +32,6 @@ require('./includes/connect.php');
 
   <?php include('./components/content.php'); ?>
 
-  </body>
+</body>
 
 </html>
