@@ -132,6 +132,129 @@ nav {
   height: 30px;
 }
 
+.profiel-page {
+  padding-top: 60px;
+}
+.profiel-page > * {
+  padding: 17px 17px 0;
+}
+.profiel-page .profiel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 10px;
+  background-color: var(--surface-2);
+}
+.profiel-page .profiel .info {
+  height: 73px;
+  display: flex;
+  gap: 10px;
+}
+.profiel-page .profiel .nav {
+  height: 48px;
+}
+.profiel-page .profiel .nav ul {
+  height: 100%;
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+.profiel-page .profiel .nav li {
+  height: 100%;
+  position: relative;
+}
+.profiel-page .profiel .nav a {
+  padding: 0 0.4rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 7px;
+  color: var(--text-2);
+}
+.profiel-page .profiel .nav a:hover, .profiel-page .profiel .nav a:focus {
+  background-color: rgba(255, 255, 255, 0.2549019608);
+  color: var(--text-1);
+}
+.profiel-page .profiel .nav a:hover:after, .profiel-page .profiel .nav a:focus:after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background-color: rgba(255, 255, 255, 0.1294117647);
+}
+.profiel-page .profiel .nav a:active, .profiel-page .profiel .nav a:focus-visible,
+.profiel-page .profiel .nav a .active {
+  color: #3754CD;
+  background: none;
+}
+.profiel-page .profiel .nav a:active:after, .profiel-page .profiel .nav a:focus-visible:after,
+.profiel-page .profiel .nav a .active:after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background-color: #3754CD;
+}
+.profiel-page .content div {
+  height: 100%;
+}
+
+.profiel-naam {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.profiel-naam div {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.profiel-naam > h3, .profiel-naam > p {
+  line-height: 1;
+}
+.profiel-naam > p {
+  font-size: 17px;
+}
+
+.profiel-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.profiel-buttons button {
+  width: 120px;
+  height: 100%;
+  border-radius: 10px;
+}
+.profiel-buttons button.active {
+  background-color: #3754CD;
+  color: #fff;
+}
+.profiel-buttons button.active:hover, .profiel-buttons button.active:focus {
+  background-color: #6080ff;
+}
+.profiel-buttons button.border {
+  background: none;
+  outline: 1px solid #3754CD;
+  color: var(--text-1);
+}
+.profiel-buttons button.border:hover, .profiel-buttons button.border:focus {
+  background-color: rgba(255, 255, 255, 0.1568627451);
+}
+
+.profiel-icon {
+  margin-top: -57px;
+}
+
 *,
 *::after,
 *::before {
@@ -141,7 +264,52 @@ nav {
 }
 
 body {
+  display: grid;
+  grid-template-areas: "n n n" ". c .";
+  grid-template-columns: minmax(1rem, 1fr) minmax(1px, 680px) minmax(1rem, 1fr);
+  grid-template-rows: 50px 1fr;
   background-color: var(--surface-1);
+}
+
+nav {
+  grid-area: n;
+}
+
+main {
+  grid-area: c;
+}
+
+.iconSmall {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+.iconSmall * {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.iconMedium {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+.iconMedium * {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.iconLarge {
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+}
+.iconLarge * {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
