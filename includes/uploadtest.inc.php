@@ -38,29 +38,50 @@ if (isset($_POST["submit"])) {
 
 	// check whether avatar and/or background were uploaded, if it is, 
 	// enter the uploadFile function, which uploads the files and puts the right path in the database
+	$sql = "UPDATE users SET nickname = ?, birthday = ?, bio = ?";
+	$returnAvatar = "";
+	$returnBackground = "";
+
+
 	if ($_FILES["avatar"]["error"] == 0) {
-		uploadFile($conn, "avatar", $avatarId);
+		$returnAvatar = uploadFile("avatar", $avatarId);
+		if (substr($returnAvatar, 0, 3) == "./s")
+		{
+			array_push($imageArray, $returnAvatar);
+			$sql .= ", avatar = ?";
+		} else {
+			header("Location: ../index.php?content=content/profielEdit&error={$returnAvatar}");
+		}
+	} else if ($_FILES["avatar"]["error"] == 1) {
+		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
 	}
+
 	if ($_FILES["background"]["error"] == 0) {
-		uploadFile($conn, "background", $backgroundId);
+		$returnBackground = uploadFile("background", $backgroundId);
+		if (!$returnBackground[0] == "&")
+		{
+			array_push($imageArray, $returnBackground);
+			$sql .= ", background = ?";
+		} else {
+			header("Location: ../index.php?content=content/profielEdit&error={$returnBackground}");
+		}
+	} else if ($_FILES["background"]["error"] == 1) {
+		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
 	}
+
+
+	$sql .= " WHERE usersId = ?";
+
+	array_push($imageArray, $_SESSION["id"]);
 
 	// upload the other user input into database
-	$stmt = $conn->prepare("UPDATE users SET nickname = ?, birthday = ?, bio = ? WHERE usersId = ?");
-	$stmt->bind_param("sssi", $_POST["nickname"], $_POST["birthday"], $_POST["bio"], $_SESSION["id"]);
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("sss" . str_repeat('s', count($imageArray) - 1) . "i", $_POST["nickname"], $_POST["birthday"], $_POST["bio"], ...$imageArray);
 
 	if ($stmt->execute()) {
-		header("Location: ../index.php");
+		header("Location: ../index.php?content=content/profielEdit");
 	} else {
-		header("Location: ../index.php");
+		header("Location: ../index.php?content=content/profielEdit&error=defaultError");
 	}
-}
-
-if ($stmt->execute()) {
-
-
-} else {
-	header("Location: ../components/content.php");
-	exit();
 }
 ?>
