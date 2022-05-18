@@ -1,0 +1,3 @@
+<main>
+  Focused
+</main>

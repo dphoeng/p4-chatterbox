@@ -266,6 +266,7 @@ nav {
 
 .profiel-icon {
   margin-top: -57px;
+  border-radius: 50%;
 }
 
 .profiel-background::before {

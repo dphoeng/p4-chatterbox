@@ -7,12 +7,7 @@ $record = mysqli_fetch_assoc($result);
 
 ?>
 
-<main class="profiel-page profiel-background">
-  <style>
-    .profiel-background {
-      background: url(".<?php echo $record['background']; ?>");
-    }
-  </style>
+<main class="profiel-page profiel-background" style='background: url(".<?php echo $record['background']?>")'>
   <div class="profiel">
     <div class="info">
       <div class="iconLarge profiel-icon">
