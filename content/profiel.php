@@ -1,17 +1,25 @@
 <?php
 
-$sql = "SELECT nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$_GET['id']}";
+$sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$_GET['id']}";
 $result = mysqli_query($conn, $sql);
 $record = mysqli_fetch_assoc($result);
 // var_dump($record);
 
 ?>
 
-<main class="profiel-page profiel-background" style='background: url(".<?php echo $record['background']?>")'>
+<main class="profiel-page profiel-background" )>
+  <style>
+    .profiel-background::before {
+      background: url(".<?php echo $record['background'] ?>");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
   <div class="profiel">
     <div class="info">
       <div class="iconLarge profiel-icon">
-        <img src="../src/img/Logo.png" alt="">
+        <img src=".<?php echo $record['avatar'] ?>" alt="">
       </div>
       <div class="profiel-naam">
         <h3><?php echo $record['nickname'] ?></h3>
@@ -59,11 +67,11 @@ $record = mysqli_fetch_assoc($result);
         <li><a href="#3">Vrienden</a></li>
         <li><a href="#4">Foto's</a></li>
       </ul>
-      <button>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 18C12.9 18 12 18.9 12 20C12 21.1 12.9 22 14 22C15.1 22 16 21.1 16 20C16 18.9 15.1 18 14 18ZM26 18C24.9 18 24 18.9 24 20C24 21.1 24.9 22 26 22C27.1 22 28 21.1 28 20C28 18.9 27.1 18 26 18ZM20 18C18.9 18 18 18.9 18 20C18 21.1 18.9 22 20 22C21.1 22 22 21.1 22 20C22 18.9 21.1 18 20 18Z" fill="white" />
-        </svg>
-      </button>
+      <?php
+      if ($_SESSION['id'] == $_GET['id']) {
+        echo '<a href="./index.php?content=content/profielEdit"><svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5744 13.3759L26.6185 15.4201L6.48799 35.5506H4.44383V33.5065L24.5744 13.3759ZM32.5733 0C32.0178 0 31.4401 0.222191 31.0179 0.644355L26.9518 4.71046L35.284 13.0426L39.3501 8.97653C40.2166 8.10999 40.2166 6.71018 39.3501 5.84363L34.1508 0.644355C33.7064 0.199972 33.151 0 32.5733 0ZM24.5744 7.08791L0 31.6623V39.9944H8.33218L32.9065 15.4201L24.5744 7.08791Z" fill="var(--text-2)" /></svg></a>';
+      }
+      ?>
     </div>
   </div>
   <div class="content">
