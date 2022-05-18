@@ -32,7 +32,7 @@ function sanitize($conn, $raw_data) {
 }
 
 // uploads file into $file
-function uploadFile($conn, $file, $imageId) {
+function uploadFile($file, $imageId) {
 
 	// server upload location
 	$target_dir = "../src/img/uploads/" . $file . "/";
@@ -54,27 +54,19 @@ function uploadFile($conn, $file, $imageId) {
 				if (move_uploaded_file($_FILES[$file]["tmp_name"], $target_file)) {
 					echo "The file ". htmlspecialchars(basename($_FILES[$file]["name"])). " has been uploaded.";
 				} else {
-					echo "image not uploaded";
+					return "&error=defaultError";
 				}
 			} else {
-				echo "Wrong filetype";
+				return "&error=fileTypeError";
 			}
 		} else {
-			echo "File is too large";
+			return "&error=sizeLimitError";
 		}
 	} else {
-		echo "File is not an image.";
+		return "&error=fileTypeError";
 	}
 
-	$stmt = $conn->prepare("UPDATE users SET {$file} = ? WHERE usersId = ?");
-	$stmt->bind_param("si", $save_file, $_SESSION['id']);
-
-	if ($stmt->execute()) {
-		header("Location: ../index.php");
-	} else {
-		header("Location: ../index.php");
-	}
-	
+	return $save_file;
 }
 
 ?>

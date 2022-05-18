@@ -33,5 +33,6 @@ require('./includes/connect.php');
   <?php include('./components/content.php'); ?>
 
 </body>
+<script src="./js/include.js"></script>
 
 </html>
