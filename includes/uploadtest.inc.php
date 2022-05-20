@@ -42,33 +42,35 @@ if (isset($_POST["submit"])) {
 	$returnAvatar = "";
 	$returnBackground = "";
 
-
 	if ($_FILES["avatar"]["error"] == 0) {
 		$returnAvatar = uploadFile("avatar", $avatarId);
-		if (substr($returnAvatar, 0, 3) == "./s")
+		if ($returnAvatar[0] != "&")
 		{
 			array_push($imageArray, $returnAvatar);
 			$sql .= ", avatar = ?";
 		} else {
 			header("Location: ../index.php?content=content/profielEdit&error={$returnAvatar}");
+			exit();
 		}
-	} else if ($_FILES["avatar"]["error"] == 1) {
+	} else if ($_FILES["background"]["error"] == 1) {
 		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
+		exit();
 	}
 
 	if ($_FILES["background"]["error"] == 0) {
 		$returnBackground = uploadFile("background", $backgroundId);
-		if (!$returnBackground[0] == "&")
+		if ($returnBackground[0] != "&")
 		{
 			array_push($imageArray, $returnBackground);
 			$sql .= ", background = ?";
 		} else {
 			header("Location: ../index.php?content=content/profielEdit&error={$returnBackground}");
+			exit();
 		}
 	} else if ($_FILES["background"]["error"] == 1) {
 		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
+		exit();
 	}
-
 
 	$sql .= " WHERE usersId = ?";
 
