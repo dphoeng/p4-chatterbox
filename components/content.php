@@ -1,11 +1,13 @@
 <?php
+if (!isset($_SESSION["id"])) {
+  include("./components/login.php");
+  exit;
+}
 if (isset($_GET["content"])) {
-  include("./" . $_GET["content"] . ".php");
-} else {
-  if (!isset($_SESSION["id"])) {
-    include("./components/login.php");
-  } else {
-    $_GET["content"] = './content/home.php';
-    include("./content/home.php");
+  $url = explode("/", $_GET['content']);
+  if (file_exists("./content/" . $url[0]) . ".php") {
+    include("./content/" . $url[0] . ".php");
   }
+} else {
+  include("./content/home.php");
 }

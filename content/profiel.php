@@ -1,6 +1,7 @@
 <?php
+$id = explode("/", $_GET['content']);
 
-$sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$_GET['id']}";
+$sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$id[1]}";
 $result = mysqli_query($conn, $sql);
 $record = mysqli_fetch_assoc($result);
 // var_dump($record);
@@ -68,8 +69,8 @@ $record = mysqli_fetch_assoc($result);
         <li><a href="#4">Foto's</a></li>
       </ul>
       <?php
-      if ($_SESSION['id'] == $_GET['id']) {
-        echo '<a href="./index.php?content=content/profielEdit"><svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5744 13.3759L26.6185 15.4201L6.48799 35.5506H4.44383V33.5065L24.5744 13.3759ZM32.5733 0C32.0178 0 31.4401 0.222191 31.0179 0.644355L26.9518 4.71046L35.284 13.0426L39.3501 8.97653C40.2166 8.10999 40.2166 6.71018 39.3501 5.84363L34.1508 0.644355C33.7064 0.199972 33.151 0 32.5733 0ZM24.5744 7.08791L0 31.6623V39.9944H8.33218L32.9065 15.4201L24.5744 7.08791Z" fill="var(--text-2)" /></svg></a>';
+      if ($_SESSION['id'] == $url[1]) {
+        echo '<a href="?content=profielEdit"><svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5744 13.3759L26.6185 15.4201L6.48799 35.5506H4.44383V33.5065L24.5744 13.3759ZM32.5733 0C32.0178 0 31.4401 0.222191 31.0179 0.644355L26.9518 4.71046L35.284 13.0426L39.3501 8.97653C40.2166 8.10999 40.2166 6.71018 39.3501 5.84363L34.1508 0.644355C33.7064 0.199972 33.151 0 32.5733 0ZM24.5744 7.08791L0 31.6623V39.9944H8.33218L32.9065 15.4201L24.5744 7.08791Z" fill="var(--text-2)" /></svg></a>';
       }
       ?>
     </div>
