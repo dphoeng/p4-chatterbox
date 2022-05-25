@@ -1,7 +1,5 @@
 <?php
 
-require_once "./connect.php";
-
 // Check if username is in database, if so then return data
 function checkIfExists($conn, $rowToCheck, $check) {
   $sql = "SELECT * FROM users WHERE $rowToCheck = ?;";
@@ -67,6 +65,39 @@ function uploadFile($file, $imageId) {
 	}
 
 	return $save_file;
+}
+
+// checks if the row for JSON friends is empty
+function checkIfEmpty($conn, $id, $otherId, $encoded)
+{
+	$sql = "SELECT friends FROM users WHERE usersId = {$otherId}";
+	$result = mysqli_query($conn, $sql);
+	if (!mysqli_num_rows($result))
+	{
+		// user doesn't exist
+	} else {
+		$record = mysqli_fetch_assoc($result);
+	}
+
+	$decodedJSON = json_decode($record['friends']);
+
+	// turn each object into a friend object and place into array
+	if (isset($decodedJSON))
+	{
+		foreach($decodedJSON as $friend)
+		{
+			// if the user you're trying to befriend has already received a request from you
+			// TODO: check whether this friend has already send YOU a request
+			if (intval($friend->id) == $id)
+			{
+				return null;
+			}
+		}
+		return "UPDATE users SET friends=JSON_ARRAY_APPEND(friends, '$', CAST('{$encoded}' AS JSON)) WHERE usersId=$otherId;";
+	} else {
+		// create new JSON_ARRAY if there is non yet (basically when field is empty)
+		return "UPDATE users SET friends=JSON_ARRAY_APPEND(JSON_ARRAY(), '$', CAST('{$encoded}' AS JSON)) WHERE usersId=$otherId;";
+	}
 }
 
 ?>

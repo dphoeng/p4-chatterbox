@@ -3,6 +3,7 @@
 session_start();
 ob_start();
 require("./connect.php");
+require("./functions.inc.php");
 include("./Friend.php");
 
 // check whether user is logged in
@@ -29,56 +30,46 @@ if ($id == $profile)
 // [{
 //     "id":"1",
 //     "date":"2022-02-22",
-//     "accepted":true
+//     "request_type":"accepted"
 // },{
 //     "id":"2",
 //     "date":null,
-//     "accepted":false
-// }]
+//     "request_type":"requested"
+// },{
+//     "id":"3",
+//     "date":null,
+//     "request_type":"requester"
+// }]]
 
-$sql = "SELECT friends FROM users WHERE usersId = {$_GET['profile']}";
-$result = mysqli_query($conn, $sql);
-if (!mysqli_num_rows($result))
+// friend class which will be converted into JSON format and put into the row of the other person
+$newFriend = new Friend($id, "requested", null);
+$encodedNewFriend = json_encode($newFriend);
+
+// friend class which will be converted into JSON format and put into the row of yourself
+$selfFriend = new Friend($profile, "requester", null);
+$encodedSelfFriend = json_encode($selfFriend);
+
+$result = checkIfEmpty($conn, $id, $profile, $encodedNewFriend);
+if (!$result)
 {
-    // user doesn't exist
-} else {
-    $record = mysqli_fetch_assoc($result);
+    header("Location: ../index.php?content=profiel/{$profile}");
+}
+$result2 = checkIfEmpty($conn, $profile, $id, $encodedSelfFriend);
+if (!$result2)
+{
+    header("Location: ../index.php?content=profiel/{$profile}");
 }
 
-$decodedJSON = json_decode($record['friends']);
-
-$newFriend = new Friend($id, false, null);
-$encodedFriend = json_encode($newFriend);
-
-// turn each object into a friend object and place into array
-if (isset($decodedJSON))
-{
-    foreach($decodedJSON as $friend)
-    {
-        // if the user you're trying to befriend has already received a request
-        // TODO: check whether this friend has already send YOU a request
-        if (intval($friend->id) == $id)
-        {
-            header("Location: ../index.php?content=profiel/{$profile}");
-            exit;
-        }
-    }
-    $sql = "UPDATE users SET friends=JSON_ARRAY_APPEND(friends, '$', CAST('{$encodedFriend}' AS JSON)) WHERE usersId=$profile";
-} else {
-    // create new JSON_ARRAY if there is non yet (basically when field is empty)
-    $sql = "UPDATE users SET friends=JSON_ARRAY_APPEND(JSON_ARRAY(), '$', CAST('{$encodedFriend}' AS JSON)) WHERE usersId=$profile";
-}
-
-// shows all friends
-// SELECT JSON_PRETTY(friends) FROM `users`
+echo $result . "<br>" . $result2 . "<br>";
 
 // no stmt because it was jank idk?, anyways there is no user input so no sanitation is needed anyways I think
-if(mysqli_query($conn, $sql))
+if(mysqli_multi_query($conn, $result . $result2))
 {
     header("Location: ../index.php?content=profiel/$profile");
 } else {
     // failed
-    // echo mysqli_error($conn);
+    echo mysqli_error($conn);
+    header("Location: ../index.php?content=profiel/$profile");
 }
 
 ?>

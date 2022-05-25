@@ -3,13 +3,13 @@
 class Friend
 {
     public $id;
-    public $accepted;
+    public $request_type;
     public $date;
 
-    function __construct($id, $accepted, $date)
+    function __construct($id, $request_type, $date)
     {
         $this->id = $id;
-        $this->accepted = $accepted;
+        $this->request_type = $request_type;
         $this->date = $date;
     }
 }

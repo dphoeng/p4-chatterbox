@@ -38,7 +38,15 @@ if (mysqli_num_rows($result) < 1)
         } else {
             $friendReturn = $friendResult->fetch_object();
     
-            $accepted = $friend->accepted ? "Friends" : "<a href='./includes/acceptfriend.inc.php?friend=$friend->id'>Accept</a> <a href='./includes/rejectfriend.inc.php?friend=$friend->id'>Reject</a>";
+            if ($friend->request_type == "accepted")
+                $accepted = "Friends";
+            else if ($friend->request_type == "requested")
+                $accepted = "<a href='./includes/acceptfriend.inc.php?friend=$friend->id'>Accept</a> <a href='./includes/rejectfriend.inc.php?friend=$friend->id'>Reject</a>";
+            else if ($friend->request_type == "requester")
+                $accepted = "You have send this user a friend request";
+            else {
+                $accepted =  "bnruh";
+            }
     
             $friendRows .= "<tr>
                                 <td>$friendReturn->nickname</td>
