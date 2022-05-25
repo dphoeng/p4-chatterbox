@@ -9,7 +9,6 @@ if (!isset($_SESSION["id"]) || !isset($_GET["friend"])) {
     exit();
 }
 
-// TODO checks to see if already accepted
 
 $friend = $_GET["friend"];
 $id = $_SESSION["id"];

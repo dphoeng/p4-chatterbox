@@ -81,8 +81,4 @@ if(mysqli_query($conn, $sql))
     // echo mysqli_error($conn);
 }
 
-// remove friend
-// UPDATE users SET friends=JSON_REMOVE(friends, SUBSTR(JSON_SEARCH(friends, 'one', \'$id\', NULL, '$[*].id'), 2, LOCATE('.', JSON_SEARCH(friends, 'one', '1', NULL, '$[*].id')) - 2)) WHERE usersId = 3;
-                                            //   LEFT(JSON_UNQUOTE(JSON_SEARCH(friends, 'one', '1', NULL, '$[*].id')), LOCATE('.', JSON_UNQUOTE(JSON_SEARCH(friends, 'one', '1', NULL, '$[*].id'))) - 1)
-
 ?>
