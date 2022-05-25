@@ -15,14 +15,10 @@ $record = mysqli_fetch_assoc($result);
 
 <main class="edit-profiel">
 	<h3>Edit profiel</h3>
-	<form action="../includes/uploadtest.inc.php" method="post" enctype="multipart/form-data" id="form">
+	<form action="../includes/upload.inc.php" method="post" enctype="multipart/form-data" id="form">
 		<label for="avatar">avatar</label>
-		<input type="file" id="avatar" name="avatar"> <?php if ($record['avatar']) {
-																										echo "<img src='.{$record['avatar']}'>";
-																									} ?>
-		<input type="file" name="background"> <?php if ($record['background']) {
-																						echo "<img src='.{$record['background']}'>";
-																					} ?>
+		<input type="file" id="avatar" name="avatar"> <?php if ($record['avatar']) { echo "<img src='.{$record['avatar']}'>"; } ?>
+		<input type="file" name="background"> <?php if ($record['background']) { echo "<img src='.{$record['background']}'>"; } ?>
 		<input type="text" name="nickname" value="<?php echo $record['nickname']; ?>">
 		<input type="date" name="birthday" value="<?php echo $record['birthday']; ?>">
 		<textarea name="bio" form="form" value="<?php echo $record['bio']; ?>"><?php echo $record['bio']; ?></textarea>

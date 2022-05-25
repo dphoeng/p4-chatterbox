@@ -1,5 +1,22 @@
 <?php
+
+if (!isset($_SESSION["id"])) {
+	header("Location: ../index.php");
+  exit();
+}
+
 $id = explode("/", $_GET['content']);
+
+// if $id[1] does not exist or is empty, redirect to logged in user's profile
+if (count($id) < 2)
+{
+	header("Location: ../index.php?content=profiel/2");
+  exit();
+} else if ($id[1] == "")
+{
+	header("Location: ../index.php?content=profiel/2");
+  exit();
+}
 
 $sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$id[1]}";
 $result = mysqli_query($conn, $sql);
@@ -29,7 +46,8 @@ $record = mysqli_fetch_assoc($result);
           if ($record['friends'] == null) {
             echo 'Heeft geen vrienden';
           } else {
-            echo "Totale vrienden; {$record['friends']}";
+            $count = count(json_decode($record['friends']));
+            echo "Totale vrienden: {$count}";
           }
           ?>
         </p>
@@ -52,12 +70,12 @@ $record = mysqli_fetch_assoc($result);
         </div>
       </div>
       <div class="profiel-buttons">
-        <button class="active">
+        <a href="./includes/addfriend.inc.php?profile=<?= $id[1] ?>"><button class="active">
           Followed
-        </button>
-        <button class="border">
+        </button></a>
+        <a href=""><button class="border">
           Respect
-        </button>
+        </button></a>
       </div>
     </div>
     <hr>

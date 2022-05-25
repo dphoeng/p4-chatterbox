@@ -6,7 +6,6 @@ require_once "./functions.inc.php";
 if (!isset($_SESSION["id"]))
 {
 	header("Location: ../index.php");
-	exit();
 }
 
 if (isset($_POST["submit"])) {
@@ -49,12 +48,12 @@ if (isset($_POST["submit"])) {
 			array_push($imageArray, $returnAvatar);
 			$sql .= ", avatar = ?";
 		} else {
-			header("Location: ../index.php?content=content/profielEdit&error={$returnAvatar}");
-			exit();
+			header("Location: ../index.php?content=profielEdit&error={$returnAvatar}");
+			exit;
 		}
 	} else if ($_FILES["background"]["error"] == 1) {
-		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
-		exit();
+		header("Location: ../index.php?content=profielEdit&error=sizeLimitError");
+		exit;
 	}
 
 	if ($_FILES["background"]["error"] == 0) {
@@ -64,12 +63,12 @@ if (isset($_POST["submit"])) {
 			array_push($imageArray, $returnBackground);
 			$sql .= ", background = ?";
 		} else {
-			header("Location: ../index.php?content=content/profielEdit&error={$returnBackground}");
-			exit();
+			header("Location: ../index.php?content=profielEdit&error={$returnBackground}");
+			exit;
 		}
 	} else if ($_FILES["background"]["error"] == 1) {
-		header("Location: ../index.php?content=content/profielEdit&error=sizeLimitError");
-		exit();
+		header("Location: ../index.php?content=profielEdit&error=sizeLimitError");
+		exit;
 	}
 
 	$sql .= " WHERE usersId = ?";
@@ -81,9 +80,12 @@ if (isset($_POST["submit"])) {
 	$stmt->bind_param("sss" . str_repeat('s', count($imageArray) - 1) . "i", $_POST["nickname"], $_POST["birthday"], $_POST["bio"], ...$imageArray);
 
 	if ($stmt->execute()) {
-		header("Location: ../index.php?content=content/profielEdit");
+		header("Location: ../index.php?content=profielEdit");
 	} else {
-		header("Location: ../index.php?content=content/profielEdit&error=defaultError");
+		header("Location: ../index.php?content=profielEdit&error=defaultError");
 	}
+} else {
+	// default error is thrown when when post array is empty, this also happens when a file is uploaded which is bigger in size than the 'post_max_size' in php.ini
+	header("Location: ../index.php?content=profielEdit&error=defaultError");
 }
 ?>

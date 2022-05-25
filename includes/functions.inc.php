@@ -52,7 +52,7 @@ function uploadFile($file, $imageId) {
 		if ($_FILES[$file]["size"] < 5000000) {
 			if (in_array($imageFileType, $typeArray)) {
 				if (move_uploaded_file($_FILES[$file]["tmp_name"], $target_file)) {
-					echo "The file ". htmlspecialchars(basename($_FILES[$file]["name"])). " has been uploaded.";
+					
 				} else {
 					return "&error=defaultError";
 				}

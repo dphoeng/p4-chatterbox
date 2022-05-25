@@ -115,25 +115,28 @@ $padding: 17px;
   display: flex;
   gap: 8px;
   flex-direction: column;
-  button {
-    width: 120px;
+  a {
     height: 100%;
-    border-radius: 10px;
-    &.active {
-      background-color: #3754CD;
-      color: #fff;
-      &:hover,
-      &:focus {
-        background-color: #6080ff;
+    button {
+      width: 120px;
+      height: 100%;
+      border-radius: 10px;
+      &.active {
+        background-color: #3754CD;
+        color: #fff;
+        &:hover,
+        &:focus {
+          background-color: #6080ff;
+        }
       }
-    }
-    &.border {
-      background: none;
-      outline: 1px solid #3754CD;
-      color: var(--text-1);
-      &:hover,
-      &:focus {
-        background-color: #ffffff28;
+      &.border {
+        background: none;
+        outline: 1px solid #3754CD;
+        color: var(--text-1);
+        &:hover,
+        &:focus {
+          background-color: #ffffff28;
+        }
       }
     }
   }
