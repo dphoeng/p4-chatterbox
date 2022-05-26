@@ -77,7 +77,7 @@ $record = mysqli_fetch_assoc($result);
         <a href="./includes/addfriend.inc.php?profile=<?= $id[1] ?>"><button class="active">
           Followed
         </button></a>
-        <a href=""><button class="border">
+        <a href="./includes/giverespect.inc.php?profile=<?= $id[1] ?>"><button class="border">
           Respect
         </button></a>
       </div>

@@ -11,8 +11,9 @@ if (!isset($_SESSION["id"]) || !isset($_GET["friend"])) {
 $friend = $_GET["friend"];
 $id = $_SESSION["id"];
 
-$sql = "UPDATE users SET friends=JSON_REMOVE(friends, SUBSTR(JSON_SEARCH(friends, 'one', '$friend', NULL, '$.friends[*].id'), 2, LOCATE('id', JSON_SEARCH(friends, 'one', '$friend', NULL, '$.friends[*].id')) - 3)) WHERE usersId = $id;";
-$sql .= "UPDATE users SET friends=JSON_REMOVE(friends, SUBSTR(JSON_SEARCH(friends, 'one', '$id', NULL, '$.friends[*].id'), 2, LOCATE('id', JSON_SEARCH(friends, 'one', '$id', NULL, '$.friends[*].id')) - 3)) WHERE usersId = $friend;";
+// removed friend from friendlist
+$sql = "UPDATE `users` SET `friends` = JSON_REMOVE(`friends`, SUBSTR(JSON_SEARCH(`friends`, 'one', '$friend', NULL, '$.friends[*].id'), 2, LOCATE('id', JSON_SEARCH(`friends`, 'one', '$friend', NULL, '$.friends[*].id')) - 3)) WHERE `usersId` = $id;";
+$sql .= "UPDATE `users` SET `friends` = JSON_REMOVE(`friends`, SUBSTR(JSON_SEARCH(`friends`, 'one', '$id', NULL, '$.friends[*].id'), 2, LOCATE('id', JSON_SEARCH(`friends`, 'one', '$id', NULL, '$.friends[*].id')) - 3)) WHERE `usersId` = $friend;";
 
 if (mysqli_multi_query($conn, $sql))
 {

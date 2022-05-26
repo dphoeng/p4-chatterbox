@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
 			header("Location: ../index.php?content=profielEdit&error={$returnAvatar}");
 			exit;
 		}
-	} else if ($_FILES["background"]["error"] == 1) {
+	} else if ($_FILES["avatar"]["error"] == 1) {
 		header("Location: ../index.php?content=profielEdit&error=sizeLimitError");
 		exit;
 	}
