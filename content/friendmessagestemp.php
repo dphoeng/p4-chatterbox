@@ -16,13 +16,10 @@ if (mysqli_num_rows($result) < 1)
 } else {
     $return = $result->fetch_object();
     $decoded = json_decode($return->friends);
-    if (count($decoded) < 1)
-    {
-        // no friends, yes array
-    }
     
-    foreach($decoded as $friend)
+    foreach($decoded->friends as $friend)
     {
+        // retrieve info of friend
         $friendId = intval($friend->id);
         $friendSql = "SELECT * FROM users WHERE usersId = {$friendId}";
         $friendResult = mysqli_query($conn, $friendSql);
@@ -38,6 +35,7 @@ if (mysqli_num_rows($result) < 1)
         } else {
             $friendReturn = $friendResult->fetch_object();
     
+            // check friend status
             if ($friend->request_type == "accepted")
                 $accepted = "Friends";
             else if ($friend->request_type == "requested")

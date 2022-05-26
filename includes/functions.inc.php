@@ -84,19 +84,19 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 	// turn each object into a friend object and place into array
 	if (isset($decodedJSON))
 	{
-		foreach($decodedJSON as $friend)
+		// friends array of object
+		foreach($decodedJSON->friends as $friend)
 		{
 			// if the user you're trying to befriend has already received a request from you
-			// TODO: check whether this friend has already send YOU a request
 			if (intval($friend->id) == $id)
 			{
 				return null;
 			}
 		}
-		return "UPDATE users SET friends=JSON_ARRAY_APPEND(friends, '$', CAST('{$encoded}' AS JSON)) WHERE usersId=$otherId;";
+		return "UPDATE users SET friends=JSON_ARRAY_APPEND(friends, '$.friends', CAST('{$encoded}' AS JSON)) WHERE usersId=$otherId;";
 	} else {
-		// create new JSON_ARRAY if there is non yet (basically when field is empty)
-		return "UPDATE users SET friends=JSON_ARRAY_APPEND(JSON_ARRAY(), '$', CAST('{$encoded}' AS JSON)) WHERE usersId=$otherId;";
+		// create new JSON_OBJECT if there is non yet (NULL)
+		return "UPDATE users SET friends=JSON_OBJECT('friend_count', 0, 'friends', JSON_ARRAY(CAST('{$encoded}' AS JSON))) WHERE usersId = $otherId;";
 	}
 }
 

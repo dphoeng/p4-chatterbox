@@ -46,8 +46,12 @@ $record = mysqli_fetch_assoc($result);
           if ($record['friends'] == null) {
             echo 'Heeft geen vrienden';
           } else {
-            $count = count(json_decode($record['friends']));
-            echo "Totale vrienden: {$count}";
+            $friend_count = json_decode($record['friends'])->friend_count;
+            if ($friend_count < 1)
+              echo 'Heeft geen vrienden';
+            else
+              echo "Totale vrienden: {$friend_count}";
+
           }
           ?>
         </p>
