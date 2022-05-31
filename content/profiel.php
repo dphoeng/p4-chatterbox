@@ -20,6 +20,10 @@ if (count($id) < 2)
 
 $sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$id[1]}";
 $result = mysqli_query($conn, $sql);
+if (!$result)
+{
+	// error page if user does not exist
+}
 $record = mysqli_fetch_assoc($result);
 // var_dump($record);
 

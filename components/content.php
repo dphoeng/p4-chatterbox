@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION["id"])) {
-  include("./components/login.php");
+  include("./content/login.php");
   exit;
 }
 if (isset($_GET["content"])) {

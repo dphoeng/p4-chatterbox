@@ -11,6 +11,10 @@ if (!isset($_SESSION["id"]))
 if (isset($_POST["submit"])) {
 	$userid = $_SESSION["id"];
 
+	$bio = sanitize($conn, $_POST['bio']);
+	$nickname = sanitize($conn, $_POST['nickname']);
+	$birthday = strlen($_POST["birthday"]) < 1 ? null : $_POST["birthday"];
+
 	$sql = 'SELECT avatar, background FROM users';
 	$result = $conn->query($sql);
 	
@@ -77,11 +81,16 @@ if (isset($_POST["submit"])) {
 
 	// upload the other user input into database
 	$stmt = $conn->prepare($sql);
-	$stmt->bind_param("sss" . str_repeat('s', count($imageArray) - 1) . "i", $_POST["nickname"], $_POST["birthday"], $_POST["bio"], ...$imageArray);
+	$stmt->bind_param("sss" . str_repeat('s', count($imageArray) - 1) . "i", $nickname, $birthday, $bio, ...$imageArray);
 
+		
 	if ($stmt->execute()) {
+		// exit;
 		header("Location: ../index.php?content=profielEdit");
 	} else {
+		// var_dump($_POST);
+		// echo mysqli_stmt_error($stmt);
+		// exit;
 		header("Location: ../index.php?content=profielEdit&error=defaultError");
 	}
 } else {
