@@ -3,7 +3,7 @@
 		<input type="text" name="uid" placeholder="Email/Gebruikersnaam" required>
 		<input type="password" name="pwd" placeholder="Wachtwoord" required>
 		<button type="submit" name="submit">Log in</button>
-		<a href="../index.php?content=content/register">Hebt u nog geen account? Klik dan hier om te registreren.</a>
+		<a href="?content=register">Hebt u nog geen account? Klik dan hier om te registreren.</a>
 		<?php
 		// Error messages
 		if (isset($_GET["error"])) {

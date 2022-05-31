@@ -25,7 +25,11 @@ if (empty($email) || empty($password)) {
 		} else {
 			$_SESSION["id"] = $record["usersId"];
 			$_SESSION["role"] = $record["role"];
+<<<<<<< Updated upstream
 			header("Refresh: 0; ../index.php?content=home");
+=======
+			header("Refresh: 0; ../?home");
+>>>>>>> Stashed changes
 		}
 	}
 }

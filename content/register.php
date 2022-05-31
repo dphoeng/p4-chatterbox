@@ -15,7 +15,7 @@ if (isset($_SESSION["id"])) {
 		<input type="password" name="pwd" placeholder="Wachtwoord" required>
 		<input type="password" name="pwdrepeat" placeholder="Wachtwoord Herhalen" required>
 		<button type="submit" name="submit">Registreer</button>
-		<a href="../index.php?content=content/login">Hebt u al een account? Klik dan hier om in te loggen.</a>
+		<a href="?content=login">Hebt u al een account? Klik dan hier om in te loggen.</a>
 	</form>
 	<?php
 	if (isset($_GET["error"])) {

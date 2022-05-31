@@ -14,4 +14,3 @@ closeSearch.addEventListener('click', (e) => {
   navSearch.classList.remove('active')
   searchInput.value = ''
 })
-
