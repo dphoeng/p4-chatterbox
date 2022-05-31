@@ -26,21 +26,6 @@ if ($id == $profile)
     exit;
 }
 
-// Example JSON format
-// [{
-//     "id":"1",
-//     "date":"2022-02-22",
-//     "request_type":"accepted"
-// },{
-//     "id":"2",
-//     "date":null,
-//     "request_type":"requested"
-// },{
-//     "id":"3",
-//     "date":null,
-//     "request_type":"requester"
-// }]]
-
 // friend class which will be converted into JSON format and put into the row of the other person
 $newFriend = new Friend($id, "requested", null);
 $encodedNewFriend = json_encode($newFriend);
