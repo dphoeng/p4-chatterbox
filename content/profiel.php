@@ -28,7 +28,7 @@ $record = mysqli_fetch_assoc($result);
 
 <main class="profiel-page profiel-background side-main-content" )>
   <style>
-    .profiel-background::before {
+    .main-content {
       background: url(".<?php echo $record['background'] ?>");
       background-position: center center;
       background-repeat: no-repeat;
@@ -97,17 +97,17 @@ $record = mysqli_fetch_assoc($result);
       ?>
     </div>
   </div>
-  <div class="content">
-    <div>
+  <div class="side-scroll-container">
+    <div class="side-scroll-item">
       <p id="1">f</p>
     </div>
-    <div>
+    <div class="side-scroll-item">
       <p id="2">f</p>
     </div>
-    <div>
+    <div class="side-scroll-item">
       <p id="3">f</p>
     </div>
-    <div>
+    <div class="side-scroll-item">
       <p id="4">f</p>
     </div>
   </div>

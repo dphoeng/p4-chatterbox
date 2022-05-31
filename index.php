@@ -31,7 +31,7 @@ require('./includes/connect.php');
     }
     $record = mysqli_fetch_assoc($result);
     ?>
-    <form class="post" data-post-id="1">
+    <form class="post full-height" data-post-id="1">
       <header>
         <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="profile img">
         <div>
@@ -43,13 +43,13 @@ require('./includes/connect.php');
           </h5>
         </div>
       </header>
-      <main>
+      <main class="full-height">
         <textarea name="post-content" placeholder="What's on your mind?"></textarea>
         <div>
           <img class="full-height" src="./img/2.png" alt="post img">
           <!-- upload foto -->
         </div>
-        <input type="file" id="upload" name="upload" accept="image/*">
+        <input class="mt-auto" type="file" id="upload" name="upload" accept="image/*">
         <button type="submit">
           post
         </button>

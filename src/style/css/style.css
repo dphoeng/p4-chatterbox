@@ -185,6 +185,7 @@
   grid-template-areas: "main";
   grid-template-columns: 1fr;
   background-color: var(--surface-2);
+  z-index: 3;
 }
 @media (min-width: 768px) {
   .main-nav {
@@ -304,10 +305,15 @@
 
 .main-content {
   grid-area: content;
-  overflow-y: scroll;
   display: grid;
   grid-template-areas: ". main .";
   grid-template-columns: minmax(7.5px, 1fr) minmax(1px, 700px) minmax(0.5rem, 1fr);
+}
+.main-content > * > div {
+  z-index: 1;
+}
+.main-content > main {
+  overflow-x: scroll;
 }
 
 .side-main-content {
@@ -359,6 +365,206 @@
   height: 40px;
 }
 
+.profiel-page {
+  padding-top: 60px;
+}
+.profiel-page > * {
+  padding: 17px 17px 0;
+}
+.profiel-page .profiel {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 10px;
+  background-color: var(--surface-2);
+}
+.profiel-page .profiel .info {
+  height: 73px;
+  display: flex;
+  gap: 10px;
+}
+.profiel-page .profiel .nav {
+  display: flex;
+  height: 48px;
+}
+.profiel-page .profiel .nav ul {
+  height: 100%;
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+.profiel-page .profiel .nav li {
+  height: 100%;
+  position: relative;
+}
+.profiel-page .profiel .nav a {
+  padding: 0 0.4rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 7px;
+  color: var(--text-2);
+}
+.profiel-page .profiel .nav a:hover, .profiel-page .profiel .nav a:focus {
+  background-color: rgba(255, 255, 255, 0.2549019608);
+  color: var(--text-1);
+}
+.profiel-page .profiel .nav a:hover:after, .profiel-page .profiel .nav a:focus:after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background-color: rgba(255, 255, 255, 0.1294117647);
+}
+.profiel-page .profiel .nav a:active, .profiel-page .profiel .nav a:focus-visible,
+.profiel-page .profiel .nav a .active {
+  color: #3754CD;
+  background: none;
+}
+.profiel-page .profiel .nav a:active:after, .profiel-page .profiel .nav a:focus-visible:after,
+.profiel-page .profiel .nav a .active:after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background-color: #3754CD;
+}
+.profiel-page .profiel .nav > button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: none;
+}
+.profiel-page .profiel .nav > button:hover, .profiel-page .profiel .nav > button:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.profiel-page .content div {
+  height: 100%;
+}
+.profiel-page .side-scroll-container {
+  padding: 0 0 1rem;
+}
+
+.profiel-naam {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.profiel-naam div {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.profiel-naam > h3, .profiel-naam > p {
+  line-height: 1;
+}
+.profiel-naam > p {
+  font-size: 17px;
+}
+
+.profiel-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.profiel-buttons a {
+  height: 100%;
+}
+.profiel-buttons a button {
+  width: 120px;
+  height: 100%;
+  border-radius: 10px;
+}
+.profiel-buttons a button.active {
+  background-color: #3754CD;
+  color: #fff;
+}
+.profiel-buttons a button.active:hover, .profiel-buttons a button.active:focus {
+  background-color: #6080ff;
+}
+.profiel-buttons a button.border {
+  background: none;
+  outline: 1px solid #3754CD;
+  color: var(--text-1);
+}
+.profiel-buttons a button.border:hover, .profiel-buttons a button.border:focus {
+  background-color: rgba(255, 255, 255, 0.1568627451);
+}
+
+.profiel-icon {
+  margin-top: -57px;
+  border-radius: 50%;
+}
+
+.iconLarge {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+.iconLarge img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.side-scroll-container {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid: 1fr/auto-flow 100%;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  scroll-behavior: smooth;
+}
+.side-scroll-container.scroll-contain {
+  overscroll-behavior: contain;
+}
+
+.side-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.side-scroll-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 5px 1rem;
+  border-radius: 10px;
+  background-color: var(--surface-2);
+}
+
+.tabel-container table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.tabel-container th,
+.tabel-container td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
 :root {
   --accent-color: #643eed;
   --transition-1: 150ms;
@@ -371,6 +577,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 body.default-grid {
@@ -423,6 +633,10 @@ a {
   text-decoration: none;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .ml-auto {
   margin-left: auto;
 }
@@ -463,7 +677,8 @@ hr {
 dialog {
   padding: 10px;
   margin: auto;
-  max-width: 700px;
+  width: clamp(100px, 100vw, 700px);
+  height: clamp(100px, 100vh, 500px);
   border-radius: 10px;
 }
 

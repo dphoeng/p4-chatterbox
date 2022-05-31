@@ -1,0 +1,27 @@
+.side-scroll-container {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid: 1fr / auto-flow 100%;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  scroll-behavior: smooth;
+  &.scroll-contain {
+    overscroll-behavior: contain;
+  }
+}
+
+.side-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.side-scroll-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 5px 1rem;
+  border-radius: 10px;
+  background-color: var(--surface-2);
+}

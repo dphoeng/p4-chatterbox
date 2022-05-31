@@ -34,54 +34,54 @@ if (mysqli_num_rows($result) < 1) {
             $friendReturn = $friendResult->fetch_object();
 
             // check friend status
-			switch ($friend->request_type) {
-				case "friends":
-					$friendRows .= "<tr>
+            switch ($friend->request_type) {
+                case "friends":
+                    $friendRows .= "<tr>
 										<td><img src='$friendReturn->avatar' alt='avatar'></td>
 										<td>$friendReturn->nickname</td>
 										<td>$friendReturn->name</td>
 										<td>Friends</td>
 										<td>$friend->date</td>
 									</tr>";
-					break;
+                    break;
 
-				case "requested":
-					$requestRows .= "<tr>
+                case "requested":
+                    $requestRows .= "<tr>
 										<td><img src='$friendReturn->avatar' alt='avatar'></td>
 										<td>$friendReturn->nickname</td>
 										<td>$friendReturn->name</td>
 										<td><a href='./includes/acceptfriend.inc.php?friend=$friend->id'>Accept</a> <a href='./includes/rejectfriend.inc.php?friend=$friend->id'>Reject</a></td>
 										<td>$friend->date</td>
 									</tr>";
-					break;
+                    break;
 
-				case "requester":
-					$requestedRows .= "<tr>
+                case "requester":
+                    $requestedRows .= "<tr>
 											<td><img src='$friendReturn->avatar' alt='avatar'></td>
 											<td>$friendReturn->nickname</td>
 											<td>$friendReturn->name</td>
 											<td>Pending</td>
 											<td>$friend->date</td>
 										</tr>";
-					break;
+                    break;
 
-				default:
-					echo "error?";
-					break;
-			}
+                default:
+                    echo "error?";
+                    break;
+            }
         }
     }
 }
 
 ?>
 
-<main class="side-main-content">
-    <div class="friendlist">
+<main class="side-main-content side-scroll-container">
+    <div class="friendlist side-scroll-item tabel-container">
         <table>
-			<caption>Friends</caption>
+            <caption>Friends</caption>
             <thead>
                 <tr>
-					<th></th>
+                    <th></th>
                     <th>Nickname</th>
                     <th>Name</th>
                     <th></th>
@@ -93,12 +93,12 @@ if (mysqli_num_rows($result) < 1) {
             </tbody>
         </table>
     </div>
-	<div class="requestlist">
+    <div class="requestlist side-scroll-item tabel-container">
         <table>
-			<caption>Friend requests</caption>
+            <caption>Friend requests</caption>
             <thead>
                 <tr>
-					<th></th>
+                    <th></th>
                     <th>Nickname</th>
                     <th>Name</th>
                     <th></th>
@@ -111,13 +111,13 @@ if (mysqli_num_rows($result) < 1) {
         </table>
 
     </div>
-	<!-- other users you requested to -->
-	<div class="requestedlist">
+    <!-- other users you requested to -->
+    <div class="requestedlist side-scroll-item tabel-container">
         <table>
-			<caption>Requested friends</caption>
+            <caption>Requested friends</caption>
             <thead>
                 <tr>
-					<th></th>
+                    <th></th>
                     <th>Nickname</th>
                     <th>Name</th>
                     <th></th>
