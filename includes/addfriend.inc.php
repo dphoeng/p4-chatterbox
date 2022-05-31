@@ -27,11 +27,11 @@ if ($id == $profile)
 }
 
 // friend class which will be converted into JSON format and put into the row of the other person
-$newFriend = new Friend($id, "requested", null);
+$newFriend = new Friend($id, "requested", date("Y-m-d"));
 $encodedNewFriend = json_encode($newFriend);
 
 // friend class which will be converted into JSON format and put into the row of yourself
-$selfFriend = new Friend($profile, "requester", null);
+$selfFriend = new Friend($profile, "requester", date("Y-m-d"));
 $encodedSelfFriend = json_encode($selfFriend);
 
 $result = checkIfEmpty($conn, $id, $profile, $encodedNewFriend);

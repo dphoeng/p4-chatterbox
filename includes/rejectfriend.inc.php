@@ -18,7 +18,7 @@ $sql .= "UPDATE `users` SET `friends` = JSON_REMOVE(`friends`, SUBSTR(JSON_SEARC
 if (mysqli_multi_query($conn, $sql))
 {
     // success
-    header("Location: ../index.php?content=friendmessagestemp");
+    header("Location: ../index.php?content=vrienden");
 
 } else {
     // fail
