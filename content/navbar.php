@@ -1,58 +1,42 @@
+<?php
+
+$sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $_SESSION['id'];
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+  // error page if user does not exist
+}
+$record = mysqli_fetch_assoc($result);
+
+?>
+
 <nav class="main-nav">
   <ul class="side-nav-left">
     <li>
       <a href="." class="icon-rounded">
-        <img class="icon-rounded medium" src="./img/2.png" alt="">
+        <img class="icon-rounded medium" src="../src/img/Logo.png" alt="">
       </a>
     </li>
-    <li>
+    <!-- <li>
       <button data-open-dropdown="search" class="icon-rounded button medium">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.8645 11.3208H12.0515L11.7633 11.0429C12.7719 9.86964 13.3791 8.34648 13.3791 6.68954C13.3791 2.99485 10.3842 0 6.68954 0C2.99485 0 0 2.99485 0 6.68954C0 10.3842 2.99485 13.3791 6.68954 13.3791C8.34648 13.3791 9.86964 12.7719 11.0429 11.7633L11.3208 12.0515V12.8645L16.4666 18L18 16.4666L12.8645 11.3208ZM6.68954 11.3208C4.12693 11.3208 2.05832 9.25214 2.05832 6.68954C2.05832 4.12693 4.12693 2.05832 6.68954 2.05832C9.25214 2.05832 11.3208 4.12693 11.3208 6.68954C11.3208 9.25214 9.25214 11.3208 6.68954 11.3208Z" fill="#ACACAC" />
         </svg>
       </button>
-    </li>
+    </li> -->
     <li>
       <button class="icon-rounded">
-        <img class="icon-rounded medium" src="./img/2.png" alt="">
+        <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="">
       </button>
     </li>
-    <li>
+    <!-- <li>
       <input type="text" placeholder="Zoek voor vrienden">
-    </li>
-    <li class="dropdown-container search-dropdown">
+    </li> -->
+    <!-- <li class="dropdown-container search-dropdown">
       <ul class="side-nav-dropdown left">
         <div class="search-results">
-          <button class="hover pill gap">
-            <img class="icon-rounded medium" src="./img/2.png" alt="">
-            <p>username1</p>
-            <span class="icon-rounded medium ml-auto">
-              <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.25 0C1.0125 0 0 1.0125 0 2.25C0 3.4875 1.0125 4.5 2.25 4.5C3.4875 4.5 4.5 3.4875 4.5 2.25C4.5 1.0125 3.4875 0 2.25 0ZM15.75 0C14.5125 0 13.5 1.0125 13.5 2.25C13.5 3.4875 14.5125 4.5 15.75 4.5C16.9875 4.5 18 3.4875 18 2.25C18 1.0125 16.9875 0 15.75 0ZM9 0C7.7625 0 6.75 1.0125 6.75 2.25C6.75 3.4875 7.7625 4.5 9 4.5C10.2375 4.5 11.25 3.4875 11.25 2.25C11.25 1.0125 10.2375 0 9 0Z" fill="white" />
-              </svg>
-            </span>
-          </button>
-          <button class="hover pill gap">
-            <img class="icon-rounded medium" src="./img/2.png" alt="">
-            <p>username2</p>
-            <span class="icon-rounded medium ml-auto">
-              <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.25 0C1.0125 0 0 1.0125 0 2.25C0 3.4875 1.0125 4.5 2.25 4.5C3.4875 4.5 4.5 3.4875 4.5 2.25C4.5 1.0125 3.4875 0 2.25 0ZM15.75 0C14.5125 0 13.5 1.0125 13.5 2.25C13.5 3.4875 14.5125 4.5 15.75 4.5C16.9875 4.5 18 3.4875 18 2.25C18 1.0125 16.9875 0 15.75 0ZM9 0C7.7625 0 6.75 1.0125 6.75 2.25C6.75 3.4875 7.7625 4.5 9 4.5C10.2375 4.5 11.25 3.4875 11.25 2.25C11.25 1.0125 10.2375 0 9 0Z" fill="white" />
-              </svg>
-            </span>
-          </button>
-          <div class="hover pill gap">
-            <img class="icon-rounded medium" src="./img/2.png" alt="">
-            <p>username3</p>
-            <button class="icon-rounded hover medium pa-right">
-              <svg width="18" height="5" viewBox="0 0 18 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.25 0C1.0125 0 0 1.0125 0 2.25C0 3.4875 1.0125 4.5 2.25 4.5C3.4875 4.5 4.5 3.4875 4.5 2.25C4.5 1.0125 3.4875 0 2.25 0ZM15.75 0C14.5125 0 13.5 1.0125 13.5 2.25C13.5 3.4875 14.5125 4.5 15.75 4.5C16.9875 4.5 18 3.4875 18 2.25C18 1.0125 16.9875 0 15.75 0ZM9 0C7.7625 0 6.75 1.0125 6.75 2.25C6.75 3.4875 7.7625 4.5 9 4.5C10.2375 4.5 11.25 3.4875 11.25 2.25C11.25 1.0125 10.2375 0 9 0Z" fill="white" />
-              </svg>
-            </button>
-          </div>
         </div>
       </ul>
-    </li>
+    </li> -->
   </ul>
   <ul class="side-nav-main">
     <li>
@@ -94,18 +78,18 @@
   <ul class="side-nav-right">
     <li>
       <a href="?content=profiel/<?php echo $_SESSION['id']; ?>">
-        <img class="icon-rounded small" src="./img/2.png" alt="">
-        <p>Your username</p>
+        <img class="icon-rounded small" src="<?php echo $record['avatar'] ?>" alt="">
+        <p><?php echo $record['nickname'] ?></p>
       </a>
     </li>
     <li>
-      <button data-open-popup="create" class="icon-rounded button medium">
+      <button data-open-popup="create-post" class="icon-rounded button medium">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18Z" fill="#F0F0F0" />
         </svg>
       </button>
     </li>
-    <li class="dropdown-container notifications">
+    <li class="dropdown-container" id="notifications">
       <button data-open-dropdown="notifications" class="icon-rounded button medium">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9 17.6028C9.99298 17.6028 10.8054 16.7904 10.8054 15.7974H7.19458C7.19458 16.7904 8.00702 17.6028 9 17.6028ZM14.4163 12.1866V7.67302C14.4163 4.90171 12.9448 2.58175 10.3541 1.9679V1.35406C10.3541 0.604814 9.74925 0 9 0C8.25075 0 7.64594 0.604814 7.64594 1.35406V1.9679C5.06419 2.58175 3.58375 4.89268 3.58375 7.67302V12.1866L1.77834 13.992V14.8947H16.2217V13.992L14.4163 12.1866ZM12.6108 13.0893H5.38917V7.67302C5.38917 5.4343 6.75226 3.61083 9 3.61083C11.2477 3.61083 12.6108 5.4343 12.6108 7.67302V13.0893ZM5.01003 1.42628L3.71916 0.135406C1.55266 1.78736 0.126379 4.333 0 7.22167H1.80542C1.94082 4.82949 3.16851 2.73521 5.01003 1.42628ZM16.1946 7.22167H18C17.8646 4.333 16.4383 1.78736 14.2808 0.135406L12.999 1.42628C14.8225 2.73521 16.0592 4.82949 16.1946 7.22167Z" fill="#F0F0F0" />
@@ -113,7 +97,7 @@
       </button>
       <ul class="side-nav-dropdown right below-nav">
         <li>
-          <img class="icon-rounded medium" src="./img/2.png" alt="profile image">
+          <img class="icon-rounded medium" src="../src/img/Logo.png" alt="profile image">
           <h4>username</h4>
           <button class="button green">
             accept
@@ -124,7 +108,7 @@
         </li>
       </ul>
     </li>
-    <li class="dropdown-container more-options">
+    <li class="dropdown-container" id="more-options">
       <button data-open-dropdown="more-options" class="icon-rounded button medium">
         <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 17H18V15H0V17ZM0 9.11444H18V7.11444H0V9.11444ZM0 0V2H18V0H0Z" fill="#F0F0F0" />
