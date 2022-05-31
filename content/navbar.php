@@ -1,11 +1,49 @@
 <?php
 
-$sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $_SESSION['id'];
+$sql = "SELECT nickname, avatar, friends FROM users WHERE usersId = {$_SESSION['id']}";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
   // error page if user does not exist
 }
 $record = mysqli_fetch_assoc($result);
+
+$rows = "";
+
+if (!$record['friends'])
+{
+  $rows .= "<li><h4>No notifications</h4></li>";
+} else {
+  $decoded = json_decode($record['friends']);
+  foreach ($decoded->friends as $friend)
+  {
+    if ($friend->request_type == "requested")
+    {
+      $friendId = intval($friend->id);
+      $friendSql = "SELECT * FROM users WHERE usersId = {$friendId}";
+      $friendResult = mysqli_query($conn, $friendSql);
+      if (mysqli_num_rows($friendResult) > 0) {
+        $friendReturn = $friendResult->fetch_assoc();
+        $rows .= "<li>
+                    <img class='icon-rounded medium' src='{$friendReturn['avatar']}' alt='profile image'>
+                    <h4>{$friendReturn['nickname']}</h4>
+                    <a href='./includes/acceptfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                      Accept
+                    </button></a>
+                    <a href='./includes/rejectfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                      Decline
+                    </button></a>
+                  </li>";
+      } else {
+        // user deleted
+      }
+    }
+  }
+}
+
+if (strlen($rows) < 1)
+{
+  $rows .= "<li><h4>No notifications</h4></li>";
+}
 
 ?>
 
@@ -96,16 +134,7 @@ $record = mysqli_fetch_assoc($result);
         </svg>
       </button>
       <ul class="side-nav-dropdown right below-nav">
-        <li>
-          <img class="icon-rounded medium" src="../src/img/Logo.png" alt="profile image">
-          <h4>username</h4>
-          <button class="button green">
-            accept
-          </button>
-          <button class="button green">
-            decline
-          </button>
-        </li>
+        <?= $rows ?>
       </ul>
     </li>
     <li class="dropdown-container" id="more-options">

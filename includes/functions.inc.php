@@ -100,4 +100,10 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 	}
 }
 
+function getUserData($conn, $id)
+{
+	$sql = "SELECT * FROM users WHERE usersId = {$id}";
+	return mysqli_query($conn, $sql);
+}
+
 ?>

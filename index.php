@@ -3,6 +3,7 @@
 session_start();
 ob_start();
 require('./includes/connect.php');
+require('./includes/functions.inc.php');
 
 ?>
 

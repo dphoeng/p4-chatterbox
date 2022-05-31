@@ -23,7 +23,10 @@ $sqlNew .= "SET @idPathOther = (SELECT SUBSTR(JSON_SEARCH(friends, 'one', '$id',
 if (mysqli_multi_query($conn, $sqlNew))
 {
     // success
-    header("Location: ../index.php?content=vrienden");
+    if (isset($_GET['ret']))
+        header("Location: ../index.php?content={$_GET['ret']}");
+    else
+        header("Location: ../index.php?content=vrienden");
 
 } else {
     // fail
