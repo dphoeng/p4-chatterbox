@@ -48,7 +48,7 @@ if (isset($_POST["submit"])) {
 	// If we get to here, it means there are no user errors
 
 	// Insert new user into database
-	$sql = "INSERT INTO users (nickname, name, email, password, role) VALUES (?, ?, ?, ?, 'user');";
+	$sql = "INSERT INTO users (nickname, name, email, password, avatar, role) VALUES (?, ?, ?, ?, './src/img/default_avatar.png', 'user');";
 
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
