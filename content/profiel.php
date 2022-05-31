@@ -1,35 +1,32 @@
 <?php
 
 if (!isset($_SESSION["id"])) {
-	header("Location: ../index.php");
+  header("Location: ../index.php");
   exit();
 }
 
 $id = explode("/", $_GET['content']);
 
 // if $id[1] does not exist or is empty, redirect to logged in user's profile
-if (count($id) < 2)
-{
-	header("Location: ../index.php?content=profiel/2");
+if (count($id) < 2) {
+  header("Location: ../index.php?content=profiel/2");
   exit();
-} else if ($id[1] == "")
-{
-	header("Location: ../index.php?content=profiel/2");
+} else if ($id[1] == "") {
+  header("Location: ../index.php?content=profiel/2");
   exit();
 }
 
 $sql = "SELECT usersId, nickname, birthday,respect,bio,avatar,friends,background FROM users WHERE usersId = {$id[1]}";
 $result = mysqli_query($conn, $sql);
-if (!$result)
-{
-	// error page if user does not exist
+if (!$result) {
+  // error page if user does not exist
 }
 $record = mysqli_fetch_assoc($result);
 // var_dump($record);
 
 ?>
 
-<main class="profiel-page profiel-background" )>
+<main class="profiel-page profiel-background side-main-content" )>
   <style>
     .profiel-background::before {
       background: url(".<?php echo $record['background'] ?>");
@@ -55,7 +52,6 @@ $record = mysqli_fetch_assoc($result);
               echo 'Heeft geen vrienden';
             else
               echo "Totale vrienden: {$friend_count}";
-
           }
           ?>
         </p>
@@ -79,11 +75,11 @@ $record = mysqli_fetch_assoc($result);
       </div>
       <div class="profiel-buttons">
         <a href="./includes/addfriend.inc.php?profile=<?= $id[1] ?>"><button class="active">
-          Followed
-        </button></a>
+            Followed
+          </button></a>
         <a href="./includes/giverespect.inc.php?profile=<?= $id[1] ?>"><button class="border">
-          Respect
-        </button></a>
+            Respect
+          </button></a>
       </div>
     </div>
     <hr>

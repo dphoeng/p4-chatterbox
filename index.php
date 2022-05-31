@@ -23,7 +23,7 @@ require('./includes/connect.php');
   <script defer src="./src/js/app.js"></script>
 </head>
 
-<body>
+<body class="default-grid">
 
   <?php
   if (isset($_SESSION["id"])) {
@@ -31,8 +31,9 @@ require('./includes/connect.php');
   }
   ?>
 
-  <?php include('./components/content.php'); ?>
-
+  <div class="main-content">
+    <?php include('./components/content.php'); ?>
+  </div>
 </body>
 <script src="./js/include.js"></script>
 

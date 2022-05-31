@@ -1,0 +1,54 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.side-nav-dropdown {
+  z-index: 1;
+  position: absolute;
+  width: 324px;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-2);
+  transition: all var(--transition-1) linear;
+  &.right {
+    inset: 0 0 auto auto;
+  }
+  &.left {
+    inset: 0 auto auto 0;
+  }
+  &.below-nav {
+    top: con.$navbarHeight;
+  }
+  > * {
+    display: none;
+  }
+}
+.dropdown-container {
+  &.active {
+    .side-nav-dropdown {
+      height: fit-content;
+      > * {
+        display: flex;
+      }
+    }
+  }
+}
+.search-dropdown {
+  ul {
+    * {
+      display: none;
+    }
+  }
+  .search-results {
+    margin-top: con.$navbarHeight;
+    padding: 7px;
+    gap: 5px;
+    flex-direction: column;
+    > * {
+      padding: 0;
+      justify-content: left;
+      height: 40px;
+
+    }
+  }
+}

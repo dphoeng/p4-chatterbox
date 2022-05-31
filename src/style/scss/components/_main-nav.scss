@@ -1,0 +1,25 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.main-nav {
+  grid-area: navbar;
+
+  padding: 5px 7.5px;
+
+  display: grid;
+  grid-template-areas: 'main';
+  grid-template-columns: 1fr;
+
+  background-color: var(--surface-2);
+
+  @include uti.mqnw(con.$tablet) {
+    gap: 0.25rem;
+    grid-template-areas: 'left main right';
+    grid-template-columns: minmax(1px, 200px) 1fr minmax(1px, 200px);
+  }
+  @include uti.mqnw(con.$desktop-small) {
+    grid-template-areas: 'left main right';
+    grid-template-columns: minmax(1px, 310px) 1fr minmax(1px, 310px);
+  }
+  
+}

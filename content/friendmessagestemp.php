@@ -10,21 +10,18 @@ if (!isset($_SESSION["id"])) {
 $sql = "SELECT friends FROM users WHERE usersId = {$_SESSION['id']} AND friends IS NOT NULL";
 $result = mysqli_query($conn, $sql);
 $friendRows = "";
-if (mysqli_num_rows($result) < 1)
-{
+if (mysqli_num_rows($result) < 1) {
     // no friends, no array
 } else {
     $return = $result->fetch_object();
     $decoded = json_decode($return->friends);
-    
-    foreach($decoded->friends as $friend)
-    {
+
+    foreach ($decoded->friends as $friend) {
         // retrieve info of friend
         $friendId = intval($friend->id);
         $friendSql = "SELECT * FROM users WHERE usersId = {$friendId}";
         $friendResult = mysqli_query($conn, $friendSql);
-        if (mysqli_num_rows($friendResult) < 1)
-        {
+        if (mysqli_num_rows($friendResult) < 1) {
             // friend no longer exists
             $friendRows .= "<tr>
                                 <td>[Deleted]</td>
@@ -34,7 +31,7 @@ if (mysqli_num_rows($result) < 1)
                             </tr>";
         } else {
             $friendReturn = $friendResult->fetch_object();
-    
+
             // check friend status
             if ($friend->request_type == "accepted")
                 $accepted = "Friends";
@@ -45,7 +42,7 @@ if (mysqli_num_rows($result) < 1)
             else {
                 $accepted =  "bnruh";
             }
-    
+
             $friendRows .= "<tr>
                                 <td>$friendReturn->nickname</td>
                                 <td>$friendReturn->name</td>
@@ -58,7 +55,7 @@ if (mysqli_num_rows($result) < 1)
 
 ?>
 
-<main>
+<main class="side-main-content">
     <div class="friendlist">
         <table>
             <thead>

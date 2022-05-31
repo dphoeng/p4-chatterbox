@@ -1,0 +1,14 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.main-content {
+  grid-area: content;
+
+  overflow-y: scroll;
+
+  display: grid;
+  grid-template-areas: '. main .';
+  grid-template-columns: minmax(7.5px, 1fr) minmax(1px, 700px) minmax(0.5rem, 1fr);
+}
+
+// minmax(1px,300px)

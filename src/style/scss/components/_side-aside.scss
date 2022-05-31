@@ -1,0 +1,11 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.side-aside {
+  grid-area: aside;
+
+  display: none;
+  @include uti.mqnw(con.$tablet) {
+    display: flex;
+  }
+}

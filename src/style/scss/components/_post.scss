@@ -1,0 +1,81 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  border-radius: 10px;
+  background-color: var(--surface-2);
+  header{
+    padding: 10px 10px 0px 10px;
+    display: flex;
+    gap: 5px;
+    div {
+      height: var(--icon-medium);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h4 {
+        font-weight: 500;
+        font-size: 17px;
+      }
+      h5 {
+        font-weight: 300;
+        font-size: 15px;
+      }
+    }
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p {
+      padding: 0 10px;
+    }
+    div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  footer {
+    padding: 0 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    div {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+    .comments {
+      display: none;
+    }
+    .messages,
+    .create-message {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    .create-message.active {
+      display: flex;
+    }
+    @include uti.mqnw(con.$mobile-medium) {
+      .comments {
+        display: flex;
+      }
+    }
+  }
+  &.active {
+    .messages,
+    .messages-hr {
+      display: flex;
+    }
+  }
+}

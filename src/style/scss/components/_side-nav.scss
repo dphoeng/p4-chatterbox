@@ -1,0 +1,101 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.side-nav-left {
+  grid-area: left;
+
+  display: flex;
+  > li {
+    &:nth-child(4) {
+      display: none;
+      width: 100%;
+      input {
+        padding: 0 15px;
+        width: 100%;
+        height: 100%;
+        border-radius: 100vh;
+      }
+    }
+    @include uti.mqnw(con.$desktop-small) {
+      &:nth-child(4) {
+        display: block;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+}
+
+.side-nav-main {
+  grid-area: main;
+
+  display: flex;
+  justify-content: center;
+  > li {
+    width: 100%;
+    max-width: 150px;
+    &:nth-child(2) {
+      display: none;
+    }
+    @include uti.mqnw(con.$tablet) {
+      &:nth-child(2) {
+        display: block;
+      }
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+  }
+}
+
+.side-nav-right {
+  grid-area: right;
+
+  display: flex;
+  justify-content: right;
+  > li {
+    &:nth-child(1) {
+      width: 100%;
+      display: none;
+      a {
+        padding: 5px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        border-radius: 100vh;
+        color: var(--text-1);
+        background-color: var(--surface-3);
+        &:hover,
+        &:focus {
+          color: var(--text-2);
+          background-color: var(--surface-4);
+        }
+      }
+    }
+    @include uti.mqnw(con.$desktop-small) {
+      &:nth-child(1) {
+        display: block;
+      }
+    }
+  }
+}
+
+.side-nav-left,
+.side-nav-main,
+.side-nav-right {
+  gap: 5px;
+  height: 100%;
+}
+
+.side-nav-left,
+.side-nav-right {
+  display: none;
+  @include uti.mqnw(con.$tablet) {
+    display: flex
+  }
+}
+

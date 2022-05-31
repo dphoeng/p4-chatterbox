@@ -1,0 +1,6 @@
+@use '../config/' as con;
+@use '../util/' as uti;
+
+.side-main-content {
+  grid-area: main;
+}
