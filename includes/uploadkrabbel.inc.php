@@ -4,7 +4,7 @@ session_start();
 require("./functions.inc.php");
 require("./connect.php");
 
-if (!isset($_SESSION["id"]) || !isset($_GET["profiel"]) || !isset($_POST["submit"])) {
+if (!isset($_SESSION["id"]) || !isset($_GET["profiel"]) || $_SERVER["REQUEST_METHOD"] != "POST") {
 	header("Location: ../index.php");
   exit();
 }
