@@ -1,5 +1,14 @@
   <?php
-  $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $_SESSION['id'];
+
+if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
+	header("Location: ../index.php");
+  exit();
+}
+
+$id = $_SESSION["id"];
+$profile = $_GET["profiel"];
+
+  $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $id;
   $result = mysqli_query($conn, $sql);
   $record = mysqli_fetch_assoc($result);
   if (isset($_GET['krabbelId'])) {
@@ -8,7 +17,7 @@
     $recordimg = mysqli_fetch_assoc($resultimg);
   }
   ?>
-  <form action="./includes/uploadkrabbel.inc.php" class="post side-main-content">
+  <form action="./includes/uploadkrabbel.inc.php?profiel=<?= $profile; ?>" class="post side-main-content" method="post" enctype="multipart/form-data" id="form">
     <header>
       <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="profile img">
       <div>
@@ -31,8 +40,6 @@
       }
       ?>
       <input class="mt-auto" type="file" id="krabbel" name="krabbel" accept="image/*" onchange="showPreview(event);">
-      <button type="submit">
-        post
-      </button>
+      <input type="submit" name="submit">
     </main>
   </form>
