@@ -23,41 +23,6 @@ require('./includes/functions.inc.php');
 </head>
 
 <body class="default-grid">
-  <dialog data-popup="create-post">
-    <?php
-    $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $_SESSION['id'];
-    $result = mysqli_query($conn, $sql);
-    if (!$result) {
-      // error page if user does not exist
-    }
-    $record = mysqli_fetch_assoc($result);
-    ?>
-    <form class="post full-height" data-post-id="1">
-      <header>
-        <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="profile img">
-        <div>
-          <h4>
-            <?php echo $record['nickname'] ?>
-          </h4>
-          <h5>
-            <?php echo date('d-m-Y H:i:s') ?>
-          </h5>
-        </div>
-      </header>
-      <main class="full-height">
-        <textarea name="post-content" placeholder="What's on your mind?"></textarea>
-        <div>
-          <img class="full-height" src="./img/2.png" alt="post img">
-          <!-- upload foto -->
-        </div>
-        <input class="mt-auto" type="file" id="upload" name="upload" accept="image/*">
-        <button type="submit">
-          post
-        </button>
-      </main>
-    </form>
-  </dialog>
-
   <?php if (isset($_SESSION["id"])) {
     include('./content/navbar.php');
   } ?>

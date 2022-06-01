@@ -9,15 +9,15 @@ $record = mysqli_fetch_assoc($result);
 
 $rows = "";
 
-if (!$record['friends'])
-{
+if (!$record['friends']) {
   $rows .= "<li><h4>No notifications</h4></li>";
 } else {
   $decoded = json_decode($record['friends']);
-  foreach ($decoded->friends as $friend)
-  {
-    if ($friend->request_type == "requested")
-    {
+
+  $ret = isset($_GET['content']) ? $_GET['content'] : "home";
+
+  foreach ($decoded->friends as $friend) {
+    if ($friend->request_type == "requested") {
       $friendId = intval($friend->id);
       $friendSql = "SELECT * FROM users WHERE usersId = {$friendId}";
       $friendResult = mysqli_query($conn, $friendSql);
@@ -26,10 +26,10 @@ if (!$record['friends'])
         $rows .= "<li>
                     <img class='icon-rounded medium' src='{$friendReturn['avatar']}' alt='profile image'>
                     <h4>{$friendReturn['nickname']}</h4>
-                    <a href='./includes/acceptfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                    <a href='./includes/acceptfriend.inc.php?friend={$friendReturn['usersId']}&ret={$ret}'><button class='button green'>
                       Accept
                     </button></a>
-                    <a href='./includes/rejectfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                    <a href='./includes/rejectfriend.inc.php?friend={$friendReturn['usersId']}&ret={$ret}'><button class='button green'>
                       Decline
                     </button></a>
                   </li>";
@@ -40,8 +40,7 @@ if (!$record['friends'])
   }
 }
 
-if (strlen($rows) < 1)
-{
+if (strlen($rows) < 1) {
   $rows .= "<li><h4>No notifications</h4></li>";
 }
 
@@ -121,11 +120,11 @@ if (strlen($rows) < 1)
       </a>
     </li>
     <li>
-      <button data-open-popup="create-post" class="icon-rounded button medium">
+      <a href="?content=createUpdate&krabbelId<?php echo $_SESSION['id']; ?>" data-open-popup="create-post" class="icon-rounded button medium">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18Z" fill="#F0F0F0" />
         </svg>
-      </button>
+      </a>
     </li>
     <li class="dropdown-container" id="notifications">
       <button data-open-dropdown="notifications" class="icon-rounded button medium">
