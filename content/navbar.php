@@ -14,6 +14,9 @@ if (!$record['friends'])
   $rows .= "<li><h4>No notifications</h4></li>";
 } else {
   $decoded = json_decode($record['friends']);
+
+  $ret = isset($_GET['content']) ? $_GET['content'] : "home";
+
   foreach ($decoded->friends as $friend)
   {
     if ($friend->request_type == "requested")
@@ -26,10 +29,10 @@ if (!$record['friends'])
         $rows .= "<li>
                     <img class='icon-rounded medium' src='{$friendReturn['avatar']}' alt='profile image'>
                     <h4>{$friendReturn['nickname']}</h4>
-                    <a href='./includes/acceptfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                    <a href='./includes/acceptfriend.inc.php?friend={$friendReturn['usersId']}&ret={$ret}'><button class='button green'>
                       Accept
                     </button></a>
-                    <a href='./includes/rejectfriend.inc.php?friend={$friendReturn['usersId']}&ret={$_GET['content']}'><button class='button green'>
+                    <a href='./includes/rejectfriend.inc.php?friend={$friendReturn['usersId']}&ret={$ret}'><button class='button green'>
                       Decline
                     </button></a>
                   </li>";
