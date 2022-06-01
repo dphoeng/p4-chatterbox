@@ -27,3 +27,12 @@ document.querySelectorAll('[data-open-popup]').forEach(button => {
     element.showModal();
   });
 });
+
+function showPreview(event) {
+  if (event.target.files.length > 0) {
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}

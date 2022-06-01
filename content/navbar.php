@@ -120,7 +120,7 @@ if (strlen($rows) < 1) {
       </a>
     </li>
     <li>
-      <a href="?content=createUpdate&krabbelId<?php echo $_SESSION['id']; ?>" data-open-popup="create-post" class="icon-rounded button medium">
+      <a href="?content=createUpdate" data-open-popup="create-post" class="icon-rounded button medium">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18Z" fill="#F0F0F0" />
         </svg>
