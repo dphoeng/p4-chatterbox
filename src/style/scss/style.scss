@@ -133,6 +133,6 @@ dialog {
   padding: 10px;
   margin: auto;
   width: clamp(100px , 100vw, 700px);
-  height: clamp(100px, 100vh, 500px);
+  height: fit-content;
   border-radius: 10px;
 }
