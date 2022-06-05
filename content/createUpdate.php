@@ -1,4 +1,3 @@
-<dialog data-popup="create-post">
   <?php
   $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $_SESSION['id'];
   $result = mysqli_query($conn, $sql);
@@ -7,7 +6,7 @@
   }
   $record = mysqli_fetch_assoc($result);
   ?>
-  <form class="post full-height" data-post-id="1">
+  <form class="side-main-content post full-height" data-post-id="1">
     <header>
       <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="profile img">
       <div>
@@ -21,15 +20,9 @@
     </header>
     <main class="full-height">
       <textarea name="message" form="form" placeholder="What's on your mind?"></textarea>
-      <div>
-        <?php
-        $sql = "SELECT image FROM krabbels WHERE krabbelId = " . $_GET['krabbelId'];
-        ?>
-      </div>
       <input class="mt-auto" type="file" id="krabbel" name="krabbel" accept="image/*">
       <button type="submit">
         post
       </button>
     </main>
   </form>
-</dialog>

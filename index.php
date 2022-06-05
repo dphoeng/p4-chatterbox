@@ -4,6 +4,19 @@ session_start();
 ob_start();
 require('./includes/connect.php');
 require('./includes/functions.inc.php');
+require './config/config.php';
+
+// temporary
+function autoLoad($className)
+{
+  $pathToFile = __DIR__ . '/classes/' . $className . '.php';
+
+  if (file_exists($pathToFile)) {
+    require_once $pathToFile;
+  }
+}
+
+spl_autoload_register('autoLoad');
 
 ?>
 
