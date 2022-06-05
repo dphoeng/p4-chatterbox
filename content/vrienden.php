@@ -75,60 +75,72 @@ if (mysqli_num_rows($result) < 1) {
 
 ?>
 
-<main class="side-main-content side-scroll-container">
-    <div class="friendlist side-scroll-item tabel-container">
-        <table>
-            <caption>Friends</caption>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Nickname</th>
-                    <th>Name</th>
-                    <th></th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?= $friendRows ?>
-            </tbody>
-        </table>
+<main class="side-main-content friend-page">
+    <div class="friendlist">
+        <div class="nav">
+            <ul class="space-around">
+                <li><a href="#1">Friends</a></li>
+                <li><a href="#2">Friend Requests</a></li>
+                <li><a href="#3">Outgoing Requests</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="requestlist side-scroll-item tabel-container">
-        <table>
-            <caption>Friend requests</caption>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Nickname</th>
-                    <th>Name</th>
-                    <th></th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?= $requestRows ?>
-            </tbody>
-        </table>
+    <div class="side-scroll-container">
+
+        <div class="side-scroll-item tabel-container">
+            <table id="1">
+                <caption>Friends</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nickname</th>
+                        <th>Name</th>
+                        <th></th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $friendRows ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="side-scroll-item tabel-container">
+            <table id="2">
+                <caption>Friend requests</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nickname</th>
+                        <th>Name</th>
+                        <th></th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $requestRows ?>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- other users you requested to -->
+        <div class="side-scroll-item tabel-container">
+            <table id="3">
+                <caption>Requested friends</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nickname</th>
+                        <th>Name</th>
+                        <th></th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?= $requestedRows ?>
+                </tbody>
+            </table>
+
+        </div>
 
     </div>
-    <!-- other users you requested to -->
-    <div class="requestedlist side-scroll-item tabel-container">
-        <table>
-            <caption>Requested friends</caption>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Nickname</th>
-                    <th>Name</th>
-                    <th></th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?= $requestedRows ?>
-            </tbody>
-        </table>
-
-    </div>
-
 </main>

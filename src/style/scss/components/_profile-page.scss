@@ -1,12 +1,19 @@
 $padding: 17px;
 
-.profiel-page {
+.profiel-page, .friend-page {
   padding-top: 60px;
+  // aha deze jank sorry :( V
+  &.friend-page {
+    padding-top: 16px;
+  }
   // outline: 1px solid white;
   > * {
-    padding: $padding $padding 0;
+    padding: $padding $padding 5px;
   }
-  .profiel {
+  > .friendlist {
+    padding: 5px $padding;
+  }
+  .profiel, .friendlist {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -18,12 +25,17 @@ $padding: 17px;
     }
     .nav {
       display: flex;
+      justify-content: space-between;
       height: 48px;
       ul {
         height: 100%;
         display: flex;
         gap: 2px;
         list-style: none;
+        &.space-around {
+          width: 100%;
+          justify-content: space-around;
+        }
       }
       li {
         height: 100%;

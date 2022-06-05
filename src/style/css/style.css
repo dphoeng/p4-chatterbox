@@ -372,13 +372,19 @@
   height: 40px;
 }
 
-.profiel-page {
+.profiel-page, .friend-page {
   padding-top: 60px;
 }
-.profiel-page > * {
-  padding: 17px 17px 0;
+.profiel-page.friend-page, .friend-page.friend-page {
+  padding-top: 16px;
 }
-.profiel-page .profiel {
+.profiel-page > *, .friend-page > * {
+  padding: 17px 17px 5px;
+}
+.profiel-page > .friendlist, .friend-page > .friendlist {
+  padding: 5px 17px;
+}
+.profiel-page .profiel, .profiel-page .friendlist, .friend-page .profiel, .friend-page .friendlist {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -386,26 +392,31 @@
   border-radius: 10px;
   background-color: var(--surface-2);
 }
-.profiel-page .profiel .info {
+.profiel-page .profiel .info, .profiel-page .friendlist .info, .friend-page .profiel .info, .friend-page .friendlist .info {
   height: 73px;
   display: flex;
   gap: 10px;
 }
-.profiel-page .profiel .nav {
+.profiel-page .profiel .nav, .profiel-page .friendlist .nav, .friend-page .profiel .nav, .friend-page .friendlist .nav {
   display: flex;
+  justify-content: space-between;
   height: 48px;
 }
-.profiel-page .profiel .nav ul {
+.profiel-page .profiel .nav ul, .profiel-page .friendlist .nav ul, .friend-page .profiel .nav ul, .friend-page .friendlist .nav ul {
   height: 100%;
   display: flex;
   gap: 2px;
   list-style: none;
 }
-.profiel-page .profiel .nav li {
+.profiel-page .profiel .nav ul.space-around, .profiel-page .friendlist .nav ul.space-around, .friend-page .profiel .nav ul.space-around, .friend-page .friendlist .nav ul.space-around {
+  width: 100%;
+  justify-content: space-around;
+}
+.profiel-page .profiel .nav li, .profiel-page .friendlist .nav li, .friend-page .profiel .nav li, .friend-page .friendlist .nav li {
   height: 100%;
   position: relative;
 }
-.profiel-page .profiel .nav a {
+.profiel-page .profiel .nav a, .profiel-page .friendlist .nav a, .friend-page .profiel .nav a, .friend-page .friendlist .nav a {
   padding: 0 0.4rem;
   height: 100%;
   display: flex;
@@ -416,26 +427,32 @@
   border-radius: 7px;
   color: var(--text-2);
 }
-.profiel-page .profiel .nav a:hover, .profiel-page .profiel .nav a:focus {
-  background-color: rgba(255, 255, 255, 0.2549019608);
+.profiel-page .profiel .nav a:hover, .profiel-page .profiel .nav a:focus, .profiel-page .friendlist .nav a:hover, .profiel-page .friendlist .nav a:focus, .friend-page .profiel .nav a:hover, .friend-page .profiel .nav a:focus, .friend-page .friendlist .nav a:hover, .friend-page .friendlist .nav a:focus {
+  background-color: #ffffff41;
   color: var(--text-1);
 }
-.profiel-page .profiel .nav a:hover:after, .profiel-page .profiel .nav a:focus:after {
+.profiel-page .profiel .nav a:hover:after, .profiel-page .profiel .nav a:focus:after, .profiel-page .friendlist .nav a:hover:after, .profiel-page .friendlist .nav a:focus:after, .friend-page .profiel .nav a:hover:after, .friend-page .profiel .nav a:focus:after, .friend-page .friendlist .nav a:hover:after, .friend-page .friendlist .nav a:focus:after {
   content: "";
   position: absolute;
   inset: auto 0 0 0;
   width: 100%;
   height: 2px;
   border-radius: 2px 2px 0 0;
-  background-color: rgba(255, 255, 255, 0.1294117647);
+  background-color: #ffffff21;
 }
 .profiel-page .profiel .nav a:active, .profiel-page .profiel .nav a:focus-visible,
-.profiel-page .profiel .nav a .active {
+.profiel-page .profiel .nav a .active, .profiel-page .friendlist .nav a:active, .profiel-page .friendlist .nav a:focus-visible,
+.profiel-page .friendlist .nav a .active, .friend-page .profiel .nav a:active, .friend-page .profiel .nav a:focus-visible,
+.friend-page .profiel .nav a .active, .friend-page .friendlist .nav a:active, .friend-page .friendlist .nav a:focus-visible,
+.friend-page .friendlist .nav a .active {
   color: #3754CD;
   background: none;
 }
 .profiel-page .profiel .nav a:active:after, .profiel-page .profiel .nav a:focus-visible:after,
-.profiel-page .profiel .nav a .active:after {
+.profiel-page .profiel .nav a .active:after, .profiel-page .friendlist .nav a:active:after, .profiel-page .friendlist .nav a:focus-visible:after,
+.profiel-page .friendlist .nav a .active:after, .friend-page .profiel .nav a:active:after, .friend-page .profiel .nav a:focus-visible:after,
+.friend-page .profiel .nav a .active:after, .friend-page .friendlist .nav a:active:after, .friend-page .friendlist .nav a:focus-visible:after,
+.friend-page .friendlist .nav a .active:after {
   content: "";
   position: absolute;
   inset: auto 0 0 0;
@@ -444,7 +461,7 @@
   border-radius: 2px 2px 0 0;
   background-color: #3754CD;
 }
-.profiel-page .profiel .nav > button {
+.profiel-page .profiel .nav > button, .profiel-page .friendlist .nav > button, .friend-page .profiel .nav > button, .friend-page .friendlist .nav > button {
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -453,13 +470,13 @@
   border-radius: 50%;
   background: none;
 }
-.profiel-page .profiel .nav > button:hover, .profiel-page .profiel .nav > button:focus {
+.profiel-page .profiel .nav > button:hover, .profiel-page .profiel .nav > button:focus, .profiel-page .friendlist .nav > button:hover, .profiel-page .friendlist .nav > button:focus, .friend-page .profiel .nav > button:hover, .friend-page .profiel .nav > button:focus, .friend-page .friendlist .nav > button:hover, .friend-page .friendlist .nav > button:focus {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.profiel-page .content div {
+.profiel-page .content div, .friend-page .content div {
   height: 100%;
 }
-.profiel-page .side-scroll-container {
+.profiel-page .side-scroll-container, .friend-page .side-scroll-container {
   padding: 0 0 1rem;
 }
 
@@ -508,7 +525,7 @@
   color: var(--text-1);
 }
 .profiel-buttons a button.border:hover, .profiel-buttons a button.border:focus {
-  background-color: rgba(255, 255, 255, 0.1568627451);
+  background-color: #ffffff28;
 }
 
 .profiel-icon {
