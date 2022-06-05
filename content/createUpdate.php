@@ -1,12 +1,12 @@
   <?php
 
-if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
-	header("Location: ../index.php");
-  exit();
-}
+  if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
+    header("Location: ../index.php");
+    exit();
+  }
 
-$id = $_SESSION["id"];
-$profile = $_GET["profiel"];
+  $id = $_SESSION["id"];
+  $profile = $_GET["profiel"];
 
   $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $id;
   $result = mysqli_query($conn, $sql);
