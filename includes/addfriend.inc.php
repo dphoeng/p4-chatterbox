@@ -4,7 +4,7 @@ session_start();
 ob_start();
 require("./connect.php");
 require("./functions.inc.php");
-include("./Friend.php");
+include("../classes/Friend.php");
 
 // check whether user is logged in
 if (!isset($_SESSION["id"]) || !isset($_GET["profile"]))

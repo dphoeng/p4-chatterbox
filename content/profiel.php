@@ -126,7 +126,7 @@ if (mysqli_num_rows($resultPosts) > 0) {
                     Request
                   </button></a>";
         }
-        echo "<a href='./includes/giverespect.inc.php?profile=<?= $profile ?>'><button class='border'>
+        echo "<a href='./includes/giverespect.inc.php?profile=$profile'><button class='border'>
                 Respect
               </button></a>";
       } ?>

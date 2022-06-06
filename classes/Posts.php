@@ -11,7 +11,7 @@ class Posts
 
   public function readAll()
   {
-    $this->db->query('SELECT * FROM posts');
+    $this->db->query('SELECT * FROM krabbels');
     return $this->db->resultSet();
   }
 

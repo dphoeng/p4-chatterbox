@@ -2,7 +2,6 @@
 
 session_start();
 require("./connect.php");
-include("./Friend.php");
 
 if (!isset($_SESSION["id"]) || !isset($_GET["friend"])) {
 	header("Location: ../index.php");
