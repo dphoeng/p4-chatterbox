@@ -8,6 +8,9 @@ if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
 $id = $_SESSION["id"];
 $profile = $_GET["profiel"];
 
+// for future use to place comments on comments
+$attached = isset($_GET["attached"]) ? $_GET["attached"] : null;
+
   $sql = "SELECT nickname,avatar FROM users WHERE usersId = " . $id;
   $result = mysqli_query($conn, $sql);
   $record = mysqli_fetch_assoc($result);
@@ -17,7 +20,7 @@ $profile = $_GET["profiel"];
     $recordimg = mysqli_fetch_assoc($resultimg);
   }
   ?>
-  <form action="./includes/uploadkrabbel.inc.php?profiel=<?= $profile; ?>" class="post side-main-content" method="post" enctype="multipart/form-data" id="form">
+  <form action="./includes/uploadkrabbel.inc.php?profiel=<?php echo $profile; if ($attached) echo "&attached={$attached}" ?>" class="post side-main-content" method="post" enctype="multipart/form-data" id="form">
     <header>
       <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="profile img">
       <div>

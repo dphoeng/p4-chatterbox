@@ -5,8 +5,7 @@ if (!isset($_SESSION["id"])) {
     exit();
 } else if ($_SESSION["role"] != "admin") {
 
-	var_dump($_SESSION);
-	// header("Location: ../index.php");
+	header("Location: ../index.php");
     exit();
 } else {
 	$rows = "";
@@ -42,7 +41,7 @@ if (!isset($_SESSION["id"])) {
 ?>
 
 <main class="side-main-content side-scroll-container">
-    <div class="friendlist side-scroll-item tabel-container">
+    <div class="side-scroll-item table-container">
         <table>
             <caption>Users</caption>
             <thead>

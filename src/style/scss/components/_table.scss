@@ -1,4 +1,4 @@
-.tabel-container {
+.table-container {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -15,4 +15,8 @@
     padding: 8px;
     border-bottom: 1px solid #ddd;
   }
+}
+
+.friend-page .table-container table tbody tr td img {
+  max-height: 15vh;
 }

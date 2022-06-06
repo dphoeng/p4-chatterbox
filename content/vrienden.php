@@ -40,7 +40,6 @@ if (mysqli_num_rows($result) < 1) {
 										<td><img src='$friendReturn->avatar' alt='avatar'></td>
 										<td>$friendReturn->nickname</td>
 										<td>$friendReturn->name</td>
-										<td>Friends</td>
 										<td>$friend->date</td>
 									</tr>";
                     break;
@@ -87,7 +86,7 @@ if (mysqli_num_rows($result) < 1) {
     </div>
     <div class="side-scroll-container">
 
-        <div class="side-scroll-item tabel-container">
+        <div class="side-scroll-item table-container">
             <table id="1">
                 <caption>Friends</caption>
                 <thead>
@@ -95,7 +94,6 @@ if (mysqli_num_rows($result) < 1) {
                         <th></th>
                         <th>Nickname</th>
                         <th>Name</th>
-                        <th></th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -104,7 +102,7 @@ if (mysqli_num_rows($result) < 1) {
                 </tbody>
             </table>
         </div>
-        <div class="side-scroll-item tabel-container">
+        <div class="side-scroll-item table-container">
             <table id="2">
                 <caption>Friend requests</caption>
                 <thead>
@@ -123,7 +121,7 @@ if (mysqli_num_rows($result) < 1) {
 
         </div>
         <!-- other users you requested to -->
-        <div class="side-scroll-item tabel-container">
+        <div class="side-scroll-item table-container">
             <table id="3">
                 <caption>Requested friends</caption>
                 <thead>

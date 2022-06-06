@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  outline: 2px gray solid;
+  margin: 10px 0;
   border-radius: 10px;
   background-color: var(--surface-2);
 }
@@ -527,6 +529,9 @@
 .profiel-buttons a button.border:hover, .profiel-buttons a button.border:focus {
   background-color: #ffffff28;
 }
+.profiel-buttons a button.no-click {
+  cursor: default;
+}
 
 .profiel-icon {
   margin-top: -57px;
@@ -542,6 +547,16 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+}
+.posts > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .side-scroll-container {
@@ -572,7 +587,7 @@
   background-color: var(--surface-2);
 }
 
-.tabel-container table {
+.table-container table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
@@ -582,11 +597,15 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.tabel-container th,
-.tabel-container td {
+.table-container th,
+.table-container td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
+}
+
+.friend-page .table-container table tbody tr td img {
+  max-height: 15vh;
 }
 
 :root {
