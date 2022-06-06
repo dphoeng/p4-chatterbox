@@ -6,20 +6,22 @@ require('./includes/connect.php');
 require('./includes/functions.inc.php');
 require './config/config.php';
 
-// temporary
-function autoLoad($className)
+if (isset($_SESSION['id']))
 {
-  $pathToFile = __DIR__ . '/classes/' . $className . '.php';
+  $currentUser = new Users();
+  $currentUser = $currentUser->read($_SESSION['id']);
 
-  if (file_exists($pathToFile)) {
-    require_once $pathToFile;
+  $db = new Database();
+  $db->query("SELECT * FROM `moderation` WHERE `usersId` = {$_SESSION['id']} AND `endDate` > CURRENT_TIMESTAMP() AND `modOption` = 'ban' ORDER BY `endDate` DESC");
+  $resultBan = $db->single();
+
+  // user is banned or timed out
+  if ($resultBan)
+  {
+    header("Location: ./content/shadowrealm.php");
   }
 }
 
-spl_autoload_register('autoLoad');
-
-$currentUser = new Users();
-$currentUser = $currentUser->read($_SESSION['id']);
 
 ?>
 

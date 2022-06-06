@@ -19,6 +19,10 @@
 				case "wrong-login":
 					echo "<p>Wrong login!</p>";
 					break;
+
+				case "banned-user":
+					echo "<p>This account has been banned!</p>";
+					break;
 			}
 		}
 		?>

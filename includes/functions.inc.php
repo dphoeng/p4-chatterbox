@@ -218,3 +218,21 @@ function getPost($conn, $recordPost)
 			// </div>
 
 }
+
+function autoLoad($className)
+{
+  $pathToFile = './classes/' . $className . '.php';
+
+  if (file_exists($pathToFile)) {
+    require_once $pathToFile;
+  }
+
+  // for includes folder which is a folder deeper
+  $pathToFileDeep = '../classes/' . $className . '.php';
+
+  if (file_exists($pathToFileDeep)) {
+    require_once $pathToFileDeep;
+  }
+}
+
+spl_autoload_register('autoLoad');

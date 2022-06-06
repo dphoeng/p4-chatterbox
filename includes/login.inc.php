@@ -1,4 +1,5 @@
 <?php
+require '../config/config.php';
 include("./connect.php");
 include("./functions.inc.php");
 
@@ -23,9 +24,18 @@ if (empty($email) || empty($password)) {
 			// password does not match
 			header("Location: ../index.php?content=components/login&error=wrong-login");
 		} else {
-			$_SESSION["id"] = $record["usersId"];
-			$_SESSION["role"] = $record["role"];
-			header("Refresh: 0; ../index.php?content=home");
+			$db = new Database();
+			$db->query("SELECT * FROM `moderation` WHERE `usersId` = {$record["usersId"]} AND `endDate` > CURRENT_TIMESTAMP() AND `modOption` = 'ban' ORDER BY `endDate` DESC");
+			$result = $db->single();
+		  
+			// user is banned or timed out
+			if ($result)
+				header("Location: ../index.php?content=components/login&error=banned-user");
+			else {
+				$_SESSION["id"] = $record["usersId"];
+				$_SESSION["role"] = $record["role"];
+				header("Refresh: 0; ../index.php?content=home");
+			}
 		}
 	}
 }

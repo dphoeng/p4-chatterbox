@@ -5,8 +5,7 @@ if (!isset($_SESSION["id"])) {
 	exit();
 } else if ($_SESSION["role"] != "admin") {
 
-	var_dump($_SESSION);
-	// header("Location: ../index.php");
+		header("Location: ../index.php");
 	exit();
 }
 $allUsers = new Users();
@@ -30,7 +29,7 @@ $allUsers = $allUsers->readAll();
 			<tbody>
 				<?php foreach ($allUsers as $user) : ?>
 					<dialog data-popup="extra-userinfo-<?= $user->usersId ?>">
-						<form method="post">
+						<form action="./includes/moderation.inc.php?id=<?= $user->usersId; ?>" method="post" id="form">
 							<h3>User info</h3>
 							<p>
 								<strong>Nickname:</strong> <?= $user->nickname ?>
@@ -48,10 +47,14 @@ $allUsers = $allUsers->readAll();
 								<strong>Role:</strong> <?= $user->role ?>
 							</p>
 							<div class="display-flex">
-								<button class="hover" data-popup-close="extra-userinfo-<?= $user->usersId ?>">Close</button>
-								<input class="hover" type="submit" name="timepout" value="timeout">
-								<input class="hover" type="submit" name="delete" value="delete">
+								<input class="hover" type="datetime-local" name="datetime" min="<?= date("Y-m-d\Th:i"); ?>" required>
+								<input type="text" name="reason" placeholder="Reason">
 							</div>
+							<div class="display-flex">
+								<input class="hover" type="submit" name="timeout" value="Timeout">
+								<input class="hover" type="submit" name="ban" value="Ban">
+							</div>
+							<button class="hover" data-popup-close="extra-userinfo-<?= $user->usersId ?>">Close</button>
 						</form>
 					</dialog>
 					<tr>
