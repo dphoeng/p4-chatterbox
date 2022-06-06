@@ -78,5 +78,3 @@ if (isset($_POST["submit"])) {
 	// default error is thrown when when post array is empty, this also happens when a file is uploaded which is bigger in size than the 'post_max_size' in php.ini
 	header("Location: ../index.php?content=profiel/{$profile}&error=defaultError");
 }
-
-?>

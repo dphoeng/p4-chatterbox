@@ -1,19 +1,11 @@
 <?php
 
-$sql = "SELECT nickname, avatar, friends FROM users WHERE usersId = {$_SESSION['id']}";
-$result = mysqli_query($conn, $sql);
-if (!$result) {
-  // error page if user does not exist
-}
-$record = mysqli_fetch_assoc($result);
-
 $rows = "";
 
-if (!$record['friends']) {
+if (!$currentUser->friends) {
   $rows .= "<li><h4>No notifications</h4></li>";
 } else {
-  $decoded = json_decode($record['friends']);
-
+  $decoded = json_decode($currentUser->friends);
   $ret = isset($_GET['content']) ? $_GET['content'] : "home";
 
   foreach ($decoded->friends as $friend) {
@@ -62,7 +54,7 @@ if (strlen($rows) < 1) {
     </li> -->
     <li>
       <button class="icon-rounded">
-        <img class="icon-rounded medium" src="<?php echo $record['avatar'] ?>" alt="">
+        <img class="icon-rounded medium" src="<?= $currentUser->avatar ?>" alt="">
       </button>
     </li>
     <!-- <li>
@@ -115,8 +107,8 @@ if (strlen($rows) < 1) {
   <ul class="side-nav-right">
     <li>
       <a href="?content=profiel/<?= $_SESSION['id']; ?>">
-        <img class="icon-rounded small" src="<?php echo $record['avatar'] ?>" alt="">
-        <p><?php echo $record['nickname'] ?></p>
+        <img class="icon-rounded small" src="<?= $currentUser->avatar ?>" alt="">
+        <p><?= $currentUser->nickname ?></p>
       </a>
     </li>
     <li>

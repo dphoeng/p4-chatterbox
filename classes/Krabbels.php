@@ -1,6 +1,6 @@
 <?php
 
-class Users
+class Krabbels
 {
   private Database $db;
 
@@ -11,13 +11,13 @@ class Users
 
   public function readAll()
   {
-    $this->db->query('SELECT * FROM users');
+    $this->db->query('SELECT * FROM krabbels');
     return $this->db->resultSet();
   }
 
   public function read($id)
   {
-    $this->db->query('SELECT * FROM users WHERE usersId = :id');
+    $this->db->query('SELECT * FROM krabbels WHERE krabbelId = :id');
     $this->db->bind(':id', $id);
     return $this->db->single();
   }

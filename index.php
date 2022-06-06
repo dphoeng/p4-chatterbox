@@ -18,6 +18,9 @@ function autoLoad($className)
 
 spl_autoload_register('autoLoad');
 
+$currentUser = new Users();
+$currentUser = $currentUser->read($_SESSION['id']);
+
 ?>
 
 <!DOCTYPE html>
