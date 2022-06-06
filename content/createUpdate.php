@@ -1,12 +1,12 @@
   <?php
 
-if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
-	header("Location: ../index.php");
-  exit();
-}
+  if (!isset($_SESSION["id"]) || !isset($_GET["profiel"])) {
+    header("Location: ../index.php");
+    exit();
+  }
 
-$id = $_SESSION["id"];
-$profile = $_GET["profiel"];
+  $id = $_SESSION["id"];
+  $profile = $_GET["profiel"];
 
 // for future use to place comments on comments
 $attached = isset($_GET["attached"]) ? $_GET["attached"] : null;

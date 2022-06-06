@@ -1,11 +1,12 @@
 <?php
 
 // Check if username is in database, if so then return data
-function checkIfExists($conn, $rowToCheck, $check) {
-  $sql = "SELECT * FROM users WHERE $rowToCheck = ?;";
+function checkIfExists($conn, $rowToCheck, $check)
+{
+	$sql = "SELECT * FROM users WHERE $rowToCheck = ?;";
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-	 	header("location: ../components/register.php?error=stmtfailed");
+		header("location: ../components/register.php?error=stmtfailed");
 		exit();
 	}
 
@@ -17,40 +18,39 @@ function checkIfExists($conn, $rowToCheck, $check) {
 
 	if ($row = mysqli_fetch_assoc($resultData)) {
 		return $row;
-	}
-	else {
+	} else {
 		return false;
 	}
-
 }
 
 // sanitize user input fields, prevents code injections
-function sanitize($conn, $raw_data) {
+function sanitize($conn, $raw_data)
+{
 	return (trim(htmlspecialchars(mysqli_real_escape_string($conn, $raw_data))));
 }
 
 // uploads file into $file
-function uploadFile($file, $imageId) {
+function uploadFile($file, $imageId)
+{
 
 	// server upload location
 	$target_dir = "../src/img/uploads/" . $file . "/";
 
 	// database location string
 	$save_dir = "./src/img/uploads/" . $file . "/";
-	$imageFileType = strtolower(pathinfo(basename($_FILES[$file]["name"]),PATHINFO_EXTENSION));
-	
+	$imageFileType = strtolower(pathinfo(basename($_FILES[$file]["name"]), PATHINFO_EXTENSION));
+
 	$target_file = $target_dir . $imageId . '.' . $imageFileType;
 	$save_file = $save_dir . $imageId . '.' . $imageFileType;
-	
+
 	// allowed types
 	$typeArray = array("jpg", "png", "jpeg", "gif");
-	
+
 	$check = getimagesize($_FILES[$file]["tmp_name"]);
 	if ($check !== false) {
 		if ($_FILES[$file]["size"] < 5000000) {
 			if (in_array($imageFileType, $typeArray)) {
 				if (move_uploaded_file($_FILES[$file]["tmp_name"], $target_file)) {
-					
 				} else {
 					return "&error=defaultError";
 				}
@@ -72,8 +72,7 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 {
 	$sql = "SELECT friends FROM users WHERE usersId = {$otherId}";
 	$result = mysqli_query($conn, $sql);
-	if (!mysqli_num_rows($result))
-	{
+	if (!mysqli_num_rows($result)) {
 		// user doesn't exist
 	} else {
 		$record = mysqli_fetch_assoc($result);
@@ -82,14 +81,11 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 	$decodedJSON = json_decode($record['friends']);
 
 	// turn each object into a friend object and place into array
-	if (isset($decodedJSON))
-	{
+	if (isset($decodedJSON)) {
 		// friends array of object
-		foreach($decodedJSON->friends as $friend)
-		{
+		foreach ($decodedJSON->friends as $friend) {
 			// if the user you're trying to befriend has already received a request from you
-			if (intval($friend->id) == $id)
-			{
+			if (intval($friend->id) == $id) {
 				return null;
 			}
 		}
@@ -222,5 +218,3 @@ function getPost($conn, $recordPost)
 			// </div>
 
 }
-
-?>
