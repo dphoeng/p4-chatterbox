@@ -14,7 +14,7 @@ $allUsers = $allUsers->readAll();
 ?>
 
 <main class="side-main-content side-scroll-container">
-	<div class="friendlist side-scroll-item tabel-container">
+	<div class="friendlist side-scroll-item table-container">
 		<table>
 			<caption>Users</caption>
 			<thead>
