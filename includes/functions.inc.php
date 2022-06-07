@@ -95,3 +95,20 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 		return "UPDATE users SET friends=JSON_OBJECT('friend_count', 0, 'friends', JSON_ARRAY(CAST('{$encoded}' AS JSON))) WHERE usersId = $otherId;";
 	}
 }
+
+function autoLoad($className)
+{
+	$pathToFile = './classes/' . $className . '.php';
+
+	if (file_exists($pathToFile)) {
+		require_once $pathToFile;
+	}
+	// for includes folder which is a folder deeper
+	$pathToFileDeep = '../classes/' . $className . '.php';
+
+	if (file_exists($pathToFileDeep)) {
+		require_once $pathToFileDeep;
+	}
+}
+
+spl_autoload_register('autoLoad');

@@ -68,12 +68,15 @@ else
     }
     ?>
     <input class="mt-auto" type="file" id="krabbel" name="krabbel" accept="image/*" onchange="showPreview(event);">
-    <input type="submit" name="submit">
     <?php
     if (isset($_GET['krabbelId'])) {
       echo "<input type='hidden' name='krabbelId' value='{$_GET['krabbelId']}'>
-      <input type='submit' name='delete' value='delete'>
+      <a href='./includes/deletekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
+        delete
+      </a>
       <input type='submit' name='update' value='update'>";
+    } else {
+      echo "<input type='submit' name='post' value='post'>";
     }
     ?>
   </main>
