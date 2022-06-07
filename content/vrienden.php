@@ -40,6 +40,7 @@ if (mysqli_num_rows($result) < 1) {
 										<td><img src='$friendReturn->avatar' alt='avatar'></td>
 										<td>$friendReturn->nickname</td>
 										<td>$friendReturn->name</td>
+										<td><a href='./includes/rejectfriend.inc.php?friend=$friend->id'>Remove friend</a></td>
 										<td>$friend->date</td>
 									</tr>";
                     break;
@@ -59,7 +60,7 @@ if (mysqli_num_rows($result) < 1) {
 											<td><img src='$friendReturn->avatar' alt='avatar'></td>
 											<td>$friendReturn->nickname</td>
 											<td>$friendReturn->name</td>
-											<td>Pending</td>
+											<td><a href='./includes/rejectfriend.inc.php?friend=$friend->id'>Remove req</a></td>
 											<td>$friend->date</td>
 										</tr>";
                     break;
@@ -94,6 +95,7 @@ if (mysqli_num_rows($result) < 1) {
                         <th></th>
                         <th>Nickname</th>
                         <th>Name</th>
+                        <th></th>
                         <th>Date</th>
                     </tr>
                 </thead>
