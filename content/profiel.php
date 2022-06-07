@@ -31,11 +31,9 @@ $resultPosts = mysqli_query($conn, $sqlPosts);
 $posts = "";
 
 if (mysqli_num_rows($resultPosts) > 0) {
-  while ($recordPost = mysqli_fetch_assoc($resultPosts))
-  {
+  while ($recordPost = mysqli_fetch_assoc($resultPosts)) {
     $posts .= getPost($conn, $recordPost);
   }
-
 } else {
   $posts .= "<h4>No posts :(</h4>";
 }
@@ -45,7 +43,7 @@ if (mysqli_num_rows($resultPosts) > 0) {
 <main class="profiel-page profiel-background side-main-content" )>
   <style>
     .main-content {
-      background: url(".<?php echo $record['background'] ?>");
+      background: url(".<?= $record['background'] ?>");
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -54,10 +52,10 @@ if (mysqli_num_rows($resultPosts) > 0) {
   <div class="profiel">
     <div class="info">
       <div class="iconLarge profiel-icon">
-        <img src=".<?php echo $record['avatar'] ?>" alt="">
+        <img src=".<?= $record['avatar'] ?>" alt="">
       </div>
       <div class="profiel-naam">
-        <h3><?php echo $record['nickname'] ?></h3>
+        <h3><?= $record['nickname'] ?></h3>
         <p>
           <?php
           if ($record['friends'] == null) {
@@ -69,6 +67,7 @@ if (mysqli_num_rows($resultPosts) > 0) {
             else
               echo "Totale vrienden: {$friend_count}";
           }
+          echo ", respect: {$record['respect']}";
           ?>
         </p>
         <div>
@@ -90,46 +89,42 @@ if (mysqli_num_rows($resultPosts) > 0) {
         </div>
       </div>
       <div class="profiel-buttons"><?php if ($id !== $profile) {
-        $found = false;
-        foreach ($decoded->friends as $friend)
-        {
-          if ($id === $friend->id)
-          {
-            switch ($friend->request_type)
-            {
-              case "friends":
-                // remove friend?
-                echo "<a href='#'><button class='no-click'>
+                                      $found = false;
+                                      foreach ($decoded->friends as $friend) {
+                                        if ($id === $friend->id) {
+                                          switch ($friend->request_type) {
+                                            case "friends":
+                                              // remove friend?
+                                              echo "<a href='#'><button class='no-click'>
                         Friends
                       </button></a>";
-                break;
+                                              break;
 
-              case "requested":
-                // remove request?
-                echo "<a><button class='no-click'>
+                                            case "requested":
+                                              // remove request?
+                                              echo "<a><button class='no-click'>
                         Requested
                       </button></a>";
-                break;
-              
-              case "requester":
-                echo "<a href='./includes/acceptfriend.inc.php?friend=$profile'><button class='active'>
+                                              break;
+
+                                            case "requester":
+                                              echo "<a href='./includes/acceptfriend.inc.php?friend=$profile'><button class='active'>
                         Accept
                       </button></a>";
-                break;
-            }
-            $found = true;
-          }
-        }
-        if (!$found)
-        {
-            echo "<a href='./includes/addfriend.inc.php?profile=$profile'><button class='active'>
+                                              break;
+                                          }
+                                          $found = true;
+                                        }
+                                      }
+                                      if (!$found) {
+                                        echo "<a href='./includes/addfriend.inc.php?profile=$profile'><button class='active'>
                     Request
                   </button></a>";
-        }
-        echo "<a href='./includes/giverespect.inc.php?profile=$profile'><button class='border'>
+                                      }
+                                      echo "<a href='./includes/giverespect.inc.php?profile=$profile'><button class='border'>
                 Respect
               </button></a>";
-      } ?>
+                                    } ?>
       </div>
     </div>
     <hr>
@@ -148,9 +143,9 @@ if (mysqli_num_rows($resultPosts) > 0) {
     </div>
   </div>
   <div class="side-scroll-container">
-    <div class="side-scroll-item">
-      <div id="1" class="posts">
-        <div>
+    <div id="1" class="side-scroll-item">
+      <div class="posts">
+        <div class="post">
           <h4>Leave krabbel&nbsp;</h4>
           <a href="?content=createUpdate&profiel=<?= $profile; ?>" data-open-popup="create-post" class="icon-rounded button medium">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,17 +154,22 @@ if (mysqli_num_rows($resultPosts) > 0) {
           </a>
         </div>
         <?= $posts; ?>
-        
       </div>
     </div>
-    <div class="side-scroll-item">
-      <p id="2"><?= $record['bio']; ?></p>
+    <div id="2" class="side-scroll-item">
+      <div class="post">
+        <p><?= $record['bio']; ?></p>
+      </div>
     </div>
-    <div class="side-scroll-item">
-      <p id="3">f</p>
+    <div id="3" class="side-scroll-item">
+      <div class="post">
+        <p>f</p>
+      </div>
     </div>
-    <div class="side-scroll-item">
-      <p id="4">f</p>
+    <div id="4" class="side-scroll-item">
+      <div class="post">
+        <p>f</p>
+      </div>
     </div>
   </div>
 </main>
