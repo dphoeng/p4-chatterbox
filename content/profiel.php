@@ -41,7 +41,7 @@ $posts = new Krabbels();
   <div class="profiel">
     <div class="info">
       <div class="iconLarge profiel-icon">
-        <img src=".<?= $record['avatar'] ?>" alt="">
+        <img src="<?= $record['avatar'] ?>" alt="">
       </div>
       <div class="profiel-naam">
         <h3><?= $record['nickname'] ?></h3>
