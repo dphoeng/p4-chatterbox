@@ -87,6 +87,16 @@
       stroke: var(--text-2);
     }
   }
+  &.dropdown {
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0;
+    span:last-child {
+      margin-left: auto;
+    }
+    padding: 0 5px;
+    height: 40px;
+  }
   &.active {
     color: var(--accent-color);
     background: none;

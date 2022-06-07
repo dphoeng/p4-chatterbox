@@ -2,12 +2,16 @@
 
 session_start();
 ob_start();
-require('./includes/connect.php');
-require('./includes/functions.inc.php');
+require './includes/connect.php';
+require './includes/functions.inc.php';
 require './config/config.php';
+require './classes/Database.php';
+require './classes/Users.php';
+require './classes/Krabbels.php';
+require './classes/Friend.php';
 
-if (isset($_SESSION['id']))
-{
+
+if (isset($_SESSION['id'])) {
   $currentUser = new Users();
   $currentUser = $currentUser->read($_SESSION['id']);
 
@@ -16,11 +20,11 @@ if (isset($_SESSION['id']))
   $resultBan = $db->single();
 
   // user is banned or timed out
-  if ($resultBan)
-  {
+  if ($resultBan) {
     header("Location: ./content/shadowrealm.php");
   }
 }
+
 
 
 ?>

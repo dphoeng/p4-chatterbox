@@ -53,9 +53,9 @@ if (strlen($rows) < 1) {
       </button>
     </li> -->
     <li>
-      <button class="icon-rounded">
+      <a href="" class="icon-rounded">
         <img class="icon-rounded medium" src="<?= $currentUser->avatar ?>" alt="">
-      </button>
+      </a>
     </li>
     <!-- <li>
       <input type="text" placeholder="Zoek voor vrienden">
@@ -135,20 +135,67 @@ if (strlen($rows) < 1) {
         </svg>
       </button>
       <ul class="side-nav-dropdown right below-nav">
-        <li>
-          <span>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
-            </svg>
-          </span>
+        <li class="flex-column">
           <h4>settings</h4>
-          <span>
+          <ul>
+            <li>
+              <button class="hover rounded dropdown">
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+                Option 1
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+              </button>
+            </li>
+            <li>
+              <button class="hover rounded dropdown">
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+                Option 2
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+              </button>
+            </li>
+            <li>
+              <button class="hover rounded dropdown">
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+                Option 3
+                <span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
+                  </svg>
+                </span>
+              </button>
+            </li>
+          </ul>
+        </li>
+        <hr>
+        <li>
+          <button class="hover rounded dropdown">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
             </svg>
-          </span>
+            logout
+          </button>
         </li>
-      </ul>
     </li>
+  </ul>
+  </li>
   </ul>
 </nav>

@@ -168,6 +168,16 @@
   fill: var(--text-2);
   stroke: var(--text-2);
 }
+.hover.dropdown {
+  justify-content: flex-start;
+  gap: 5px;
+  padding: 0;
+  padding: 0 5px;
+  height: 40px;
+}
+.hover.dropdown span:last-child {
+  margin-left: auto;
+}
 .hover.active {
   color: var(--accent-color);
   background: none;
@@ -334,7 +344,9 @@
   position: absolute;
   width: 324px;
   height: 0px;
+  padding: 0px 5px 5px;
   display: flex;
+  gap: 5px;
   flex-direction: column;
   background-color: var(--surface-2);
   transition: all var(--transition-1) linear;
@@ -697,6 +709,10 @@ a {
 
 .display-flex {
   display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 textarea {

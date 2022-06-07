@@ -98,18 +98,22 @@ function checkIfEmpty($conn, $id, $otherId, $encoded)
 
 function getPost($conn, $recordPost)
 {
-    $sql = "SELECT * FROM `users` WHERE `usersId` = {$recordPost['posterId']}";
+	$sql = "SELECT * FROM `users` WHERE `usersId` = {$recordPost['posterId']}";
 	$result = mysqli_query($conn, $sql);
 	if (mysqli_num_rows($result) < 1) {
 		// user no longer exists
 	}
 	$record = mysqli_fetch_assoc($result);
 	$image = "";
-	if ($recordPost['image'])
-	{
+	if ($recordPost['image']) {
 		$image = "<div>
 					<img class='full-height' src='{$recordPost['image']}' alt='post img'>
 	  			  </div>";
+	}
+	if ($recordPost['posterId'] == $_SESSION['userId']) {
+		$delete = "<a href='/index.php?content=createUpdate&profiel={$recordPost['posterId']}&krabbelId={$recordPost['krabbelId']}' class='delete-post'>Delete</a>";
+	} else {
+		$delete = "";
 	}
 	return "<main class='side-main-content'>
 				<div class='post' data-post-id='1'>
@@ -125,40 +129,16 @@ function getPost($conn, $recordPost)
 					  	{$recordPost['postDate']}
 					  </h5>
 					</div>
-					<button class='icon-rounded medium button ml-auto'>
-					  <svg width='18' height='5' viewBox='0 0 18 5' fill='none' xmlns='http://www.w3.org/2000/svg'>
-						<path d='M2.25 0.421814C1.0125 0.421814 0 1.43431 0 2.67181C0 3.90931 1.0125 4.92181 2.25 4.92181C3.4875 4.92181 4.5 3.90931 4.5 2.67181C4.5 1.43431 3.4875 0.421814 2.25 0.421814ZM15.75 0.421814C14.5125 0.421814 13.5 1.43431 13.5 2.67181C13.5 3.90931 14.5125 4.92181 15.75 4.92181C16.9875 4.92181 18 3.90931 18 2.67181C18 1.43431 16.9875 0.421814 15.75 0.421814ZM9 0.421814C7.7625 0.421814 6.75 1.43431 6.75 2.67181C6.75 3.90931 7.7625 4.92181 9 4.92181C10.2375 4.92181 11.25 3.90931 11.25 2.67181C11.25 1.43431 10.2375 0.421814 9 0.421814Z' fill='white' />
-					  </svg>
-					</button>
+					" . $delete . "
 				  </header>
 				  <main>
 					<p>{$recordPost['text']}</p>
 					{$image}
 				  </main>
+					<hr>
 				  <footer>
 					<div>
-					  <button class='hover small rounded'>
-						🥶
-					  </button>
-					  <button class='hover small rounded'>
-						🤔
-					  </button>
-					  <button class='hover small rounded'>
-						🤨
-					  </button>
-					  <button class='hover small rounded'>
-						🤮
-					  </button>
-					  <button class='ml-auto hover small rounded comments'>
-						999 Opmerkingen
-					  </button>
-					</div>
-					<hr>
-					<div>
-					  <button class='hover rounded medium'>
-						emote
-					  </button>
-					  <a href='./index.php?content=createUpdate&profiel={$recordPost['profileId']}&attached={$recordPost['krabbelId']}'><button class='hover rounded medium'>
+					  <a class='hover rounded medium' href='./index.php?content=createUpdate&profiel={$recordPost['profileId']}&attached={$recordPost['krabbelId']}'><button class='hover rounded medium'>
 						comment
 					  </button></a>
 					  <button class='hover rounded medium'>
@@ -168,71 +148,53 @@ function getPost($conn, $recordPost)
 				</div>
   			</main>";
 
-			  // removed from post above for now since it isn't working atm
-			//   <div class='create-message'>
-			//   <header>
-			// 	<a href='./img/2.png'>
-			// 	  <img class='icon-rounded medium' src='./img/2.png' alt='profile img'>
-			// 	</a>
-			// 	<div>
-			// 	  <h4>
-			// 		MessageUserName
-			// 	  </h4>
-			// 	  <h5>
-			// 		TimePosted
-			// 	  </h5>
-			// 	</div>
-			//   </header>
-			//   <main>
-			// 	<form>
-			// 	  <textarea placeholder='Schrijf een bericht...'></textarea>
-			// 	  <button type='submit' class='hover rounded medium'>
-			// 		Verzenden
-			// 	  </button>
-			// 	</form>
-			//   </main>
-			//   <hr>
-			// </div>
-			// <div class='messages'>
-			//   <div>
-			// 	<header>
-			// 	  <a href='./img/2.png'>
-			// 		<img class='icon-rounded medium' src='./img/2.png' alt='profile img'>
-			// 	  </a>
-			// 	  <div>
-			// 		<h4>
-			// 		  PostUserName
-			// 		</h4>
-			// 		<h5>
-			// 		  TimePosted, Public/Privite
-			// 		</h5>
-			// 	  </div>
-			// 	</header>
-			// 	<main>
-			// 	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores explicabo optio sit veniam nisi
-			// 		quasi esse qui facere aspernatur libero porro odio eius, consequuntur expedita dolorem ipsum! Facilis,
-			// 		error pariatur?</p>
-			// 	</main>
-			//   </div>
-			//   <hr>
-			// </div>
+	// removed from post above for now since it isn't working atm
+	//   <div class='create-message'>
+	//   <header>
+	// 	<a href='./img/2.png'>
+	// 	  <img class='icon-rounded medium' src='./img/2.png' alt='profile img'>
+	// 	</a>
+	// 	<div>
+	// 	  <h4>
+	// 		MessageUserName
+	// 	  </h4>
+	// 	  <h5>
+	// 		TimePosted
+	// 	  </h5>
+	// 	</div>
+	//   </header>
+	//   <main>
+	// 	<form>
+	// 	  <textarea placeholder='Schrijf een bericht...'></textarea>
+	// 	  <button type='submit' class='hover rounded medium'>
+	// 		Verzenden
+	// 	  </button>
+	// 	</form>
+	//   </main>
+	//   <hr>
+	// </div>
+	// <div class='messages'>
+	//   <div>
+	// 	<header>
+	// 	  <a href='./img/2.png'>
+	// 		<img class='icon-rounded medium' src='./img/2.png' alt='profile img'>
+	// 	  </a>
+	// 	  <div>
+	// 		<h4>
+	// 		  PostUserName
+	// 		</h4>
+	// 		<h5>
+	// 		  TimePosted, Public/Privite
+	// 		</h5>
+	// 	  </div>
+	// 	</header>
+	// 	<main>
+	// 	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores explicabo optio sit veniam nisi
+	// 		quasi esse qui facere aspernatur libero porro odio eius, consequuntur expedita dolorem ipsum! Facilis,
+	// 		error pariatur?</p>
+	// 	</main>
+	//   </div>
+	//   <hr>
+	// </div>
 
 }
-
-function autoLoad($className)
-{
-  $pathToFile = './classes/' . $className . '.php';
-
-  if (file_exists($pathToFile)) {
-    require_once $pathToFile;
-  }
-
-  // for includes folder which is a folder deeper
-  $pathToFileDeep = '../classes/' . $className . '.php';
-
-  if (file_exists($pathToFileDeep)) {
-    require_once $pathToFileDeep;
-  }
-}
-
-spl_autoload_register('autoLoad');

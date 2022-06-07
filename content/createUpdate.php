@@ -13,8 +13,7 @@ $db->query("SELECT * FROM `moderation` WHERE `usersId` = {$_SESSION['id']} AND `
 $result = $db->single();
 
 // user is banned or timed out
-if ($result)
-{
+if ($result) {
   header("Location: ./index.php?error={$result->modOption}");
 }
 
@@ -25,8 +24,7 @@ if (isset($_GET['krabbelId'])) {
   // krabbel does not exist
   if (!$krabbel)
     header("Location: ../index.php");
-  else
-  {
+  else {
     // logged in user is not same as original poster
     if ($krabbel->posterId !== $id) {
       header("Location: ../index.php");
@@ -55,11 +53,13 @@ else
     </div>
   </header>
   <main>
-    <textarea name="message" form="form" placeholder="What's on your mind?"><?php if (isset($_GET['krabbelId'])) { echo "{$krabbel->text}"; } ?></textarea>
+    <textarea name="message" form="form" placeholder="What's on your mind?"><?php if (isset($_GET['krabbelId'])) {
+                                                                              echo "{$krabbel->text}";
+                                                                            } ?></textarea>
     <?php
     if (isset($_GET['krabbelId'])) {
       if ($krabbel->image)
-      // var_dump($krabbel);
+        // var_dump($krabbel);
         echo "<div class='img-holder'><img src='{$krabbel->image}' alt='profile img'></div>";
       else
         echo '<div class="img-holder"><img id="file-ip-1-preview"></div>';
@@ -69,5 +69,12 @@ else
     ?>
     <input class="mt-auto" type="file" id="krabbel" name="krabbel" accept="image/*" onchange="showPreview(event);">
     <input type="submit" name="submit">
+    <?php
+    if (isset($_GET['krabbelId'])) {
+      echo "<input type='hidden' name='krabbelId' value='{$_GET['krabbelId']}'>
+      <input type='submit' name='delete' value='delete'>
+      <input type='submit' name='update' value='update'>";
+    }
+    ?>
   </main>
 </form>

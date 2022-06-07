@@ -111,6 +111,9 @@ a {
 .display-flex {
   display: flex;
 }
+.flex-column {
+  flex-direction: column;
+}
 
 textarea {
   width: 100%;

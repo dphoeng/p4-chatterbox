@@ -1,3 +1,3 @@
 <main class="side-main-content">
-  Chat
+  Wait for it...
 </main>
