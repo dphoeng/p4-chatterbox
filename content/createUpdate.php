@@ -21,15 +21,15 @@ if ($result) {
 if (isset($_GET['krabbelId'])) {
   $krabbel = new Krabbels();
   $krabbel = $krabbel->read($_GET['krabbelId']);
-  // krabbel does not exist
-  if (!$krabbel)
-    header("Location: ../index.php");
-  else {
-    // logged in user is not same as original poster
-    if ($krabbel->posterId !== $id) {
-      header("Location: ../index.php");
-    }
-  }
+  // // krabbel does not exist
+  // if (!$krabbel)
+  //   header("Location: ../index.php");
+  // else {
+  //   // logged in user is not same as original poster
+  //   if ($krabbel->posterId !== $id) {
+  //     header("Location: ../index.php");
+  //   }
+  // }
 }
 
 

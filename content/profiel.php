@@ -25,19 +25,6 @@ if (mysqli_num_rows($result) < 1) {
 $record = mysqli_fetch_assoc($result);
 $decoded = json_decode($record['friends']);
 
-$sqlPosts = "SELECT * FROM `krabbels` WHERE `profileId` = {$profile} AND attachedToId IS NULL ORDER BY `postDate` desc";
-$resultPosts = mysqli_query($conn, $sqlPosts);
-
-$posts = "";
-
-if (mysqli_num_rows($resultPosts) > 0) {
-  while ($recordPost = mysqli_fetch_assoc($resultPosts)) {
-    $posts .= getPost($conn, $recordPost);
-  }
-} else {
-  $posts .= "<h4>No posts :(</h4>";
-}
-
 // testing
 
 $TEST = new Krabbels();
