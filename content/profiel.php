@@ -38,6 +38,10 @@ if (mysqli_num_rows($resultPosts) > 0) {
   $posts .= "<h4>No posts :(</h4>";
 }
 
+// testing
+
+$TEST = new Krabbels();
+// $TEST->getPosts($profile);
 ?>
 
 <main class="profiel-page profiel-background side-main-content" )>
@@ -89,43 +93,43 @@ if (mysqli_num_rows($resultPosts) > 0) {
         </div>
       </div>
       <div class="profiel-buttons">
-		<?php
-		if ($id !== $profile) {
-        	$found = false;
-			if ($decoded) {
-                foreach ($decoded->friends as $friend) {
-                  	if ($id === $friend->id) {
-                    	switch ($friend->request_type) {
-                      		case "friends":
-                        		// remove friend?
-                        		echo "<a href='#'><button class='no-click'>
+        <?php
+        if ($id !== $profile) {
+          $found = false;
+          if ($decoded) {
+            foreach ($decoded->friends as $friend) {
+              if ($id === $friend->id) {
+                switch ($friend->request_type) {
+                  case "friends":
+                    // remove friend?
+                    echo "<a href='#'><button class='no-click'>
 									  Friends
 									  </button></a>";
-                        		break;
-                      		
-							case "requested":
-                    		    // remove request?
-                    		    echo "<a><button class='no-click'>
+                    break;
+
+                  case "requested":
+                    // remove request?
+                    echo "<a><button class='no-click'>
  									  Requested
 									  </button></a>";
-                        		break;
-                      
-							case "requester":
-                    		    echo "<a href='./includes/acceptfriend.inc.php?friend=$profile'><button class='active'>
+                    break;
+
+                  case "requester":
+                    echo "<a href='./includes/acceptfriend.inc.php?friend=$profile'><button class='active'>
 									  Accept
 									</button></a>";
-							    break;
-                    	}
-                    $found = true;
-                  	}
+                    break;
                 }
-			}
-			if (!$found) {
-				echo "<a href='./includes/addfriend.inc.php?profile=$profile'><button class='active'>
+                $found = true;
+              }
+            }
+          }
+          if (!$found) {
+            echo "<a href='./includes/addfriend.inc.php?profile=$profile'><button class='active'>
 					  Request
 						</button></a>";
-			}
-			echo "<a href='./includes/giverespect.inc.php?profile=$profile'><button class='border'>
+          }
+          echo "<a href='./includes/giverespect.inc.php?profile=$profile'><button class='border'>
 				  Respect
 				  </button></a>";
         } ?>
@@ -157,7 +161,7 @@ if (mysqli_num_rows($resultPosts) > 0) {
             </svg>
           </a>
         </div>
-        <?= $posts; ?>
+        <?= $TEST->getPosts($profile) ?>
       </div>
     </div>
     <div id="2" class="side-scroll-item">
