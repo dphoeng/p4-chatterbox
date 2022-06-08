@@ -72,10 +72,10 @@ else
     <?php
     if (isset($_GET['krabbelId'])) {
       echo "<input type='hidden' name='krabbelId' value='{$_GET['krabbelId']}'>
-      <a href='./includes/deletekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
+      <a class='hover medium' href='./includes/deletekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
         Delete
       </a>
-      <a href='./includes/updatekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
+      <a class='hover medium' href='./includes/updatekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
         Update
       </a>";
     } else {

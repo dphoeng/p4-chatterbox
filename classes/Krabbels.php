@@ -42,13 +42,16 @@ class Krabbels
       $user = $this->db->single();
       $image = "";
       if ($krabbel->image) {
-        $image = "<div class='ml-auto'>
+        $image = "<div>
               <img class='full-height' src='{$krabbel->image}' alt='post img'>
                 </div>";
       }
       $delete = "";
       if ($krabbel->posterId == $_SESSION['id']) {
-        $delete = "<a href='/index.php?content=createUpdate&profiel={$krabbel->posterId}&krabbelId={$krabbel->krabbelId}' class='delete-post'>Delete</a>";
+        $delete = "<a class='ml-auto' href='/index.php?content=createUpdate&profiel={$krabbel->posterId}&krabbelId={$krabbel->krabbelId}' class='delete-post'>
+        <svg width='40' height='41' viewBox='0 0 40 41' fill='none' xmlns='http://www.w3.org/2000/svg'>
+<path d='M14 18.4218C12.9 18.4218 12 19.3218 12 20.4218C12 21.5218 12.9 22.4218 14 22.4218C15.1 22.4218 16 21.5218 16 20.4218C16 19.3218 15.1 18.4218 14 18.4218ZM26 18.4218C24.9 18.4218 24 19.3218 24 20.4218C24 21.5218 24.9 22.4218 26 22.4218C27.1 22.4218 28 21.5218 28 20.4218C28 19.3218 27.1 18.4218 26 18.4218ZM20 18.4218C18.9 18.4218 18 19.3218 18 20.4218C18 21.5218 18.9 22.4218 20 22.4218C21.1 22.4218 22 21.5218 22 20.4218C22 19.3218 21.1 18.4218 20 18.4218Z' fill='white'/>
+</svg></a>";
       }
       $posts .= "<main class='side-main-content'>
       <div class='post' data-post-id='1'>
