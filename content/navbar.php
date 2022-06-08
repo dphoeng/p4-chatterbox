@@ -187,12 +187,12 @@ if (strlen($rows) < 1) {
         </li>
         <hr>
         <li>
-          <button class="hover rounded dropdown">
+          <a href="./includes/logout.inc.php" class="hover rounded dropdown">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.9 18H8.1V9.9H0V8.1H8.1V0H9.9V8.1H18V9.9H9.9V18ZM9.9 0H8.1V8.1H0V9.9H8.1V18H9.9V0Z" fill="#F0F0F0" />
             </svg>
             logout
-          </button>
+          </a>
         </li>
     </li>
   </ul>

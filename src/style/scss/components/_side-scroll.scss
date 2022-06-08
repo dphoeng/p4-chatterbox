@@ -24,4 +24,17 @@
   padding: 5px 1rem;
   border-radius: 10px;
   // background-color: var(--surface-2);
+  &.login {
+    padding: 10vh 0;
+    > div {
+      margin: 0 auto 0;
+      padding: 1rem;
+      width: clamp(1px,70vw, 500px);
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      border-radius: 1rem;
+      background-color: var(--surface-2);
+    }
+  }
 }

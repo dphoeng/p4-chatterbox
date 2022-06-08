@@ -1,9 +1,11 @@
-<main class="side-main-content">
-	<form action="../includes/login.inc.php" method="post" enctype="multipart/form-data" id="form">
-		<input type="text" name="uid" placeholder="Email/Gebruikersnaam" required>
-		<input type="password" name="pwd" placeholder="Wachtwoord" required>
-		<button type="submit" name="submit">Log in</button>
-		<a href="?content=register">Hebt u nog geen account? Klik dan hier om te registreren.</a>
+<main class="side-scroll-container side-main-content">
+	<form class="side-scroll-item login" id="SignIN" action="../includes/login.inc.php" method="post" enctype="multipart/form-data">
+		<div>
+			<input type="text" name="uid" placeholder="Email/Gebruikersnaam" required>
+			<input type="password" name="pwd" placeholder="Wachtwoord" required>
+			<button type="submit" name="submit">Log in</button>
+			<a href="#SignUP">Hebt u nog geen account? Klik dan hier om te registreren.</a>
+		</div>
 		<?php
 		// Error messages
 		if (isset($_GET["error"])) {
@@ -27,14 +29,16 @@
 		}
 		?>
 	</form>
-	<form action="../includes/signup.inc.php" method="post" id="form">
-		<input type="text" name="naam" placeholder="Volledige naam" required>
-		<input type="mail" name="email" placeholder="E-Mail" required>
-		<input type="text" name="uid" placeholder="Gebruikersnaam" maxlength="16" required>
-		<input type="password" name="pwd" placeholder="Wachtwoord" required>
-		<input type="password" name="pwdrepeat" placeholder="Wachtwoord Herhalen" required>
-		<button type="submit" name="submit">Registreer</button>
-		<a href="?content=login">Hebt u al een account? Klik dan hier om in te loggen.</a>
+	<form class="side-scroll-item login" id="SignUP" action="../includes/signup.inc.php" method="post">
+		<div>
+			<input type="text" name="naam" placeholder="Volledige naam" required>
+			<input type="mail" name="email" placeholder="E-Mail" required>
+			<input type="text" name="uid" placeholder="Gebruikersnaam" maxlength="16" required>
+			<input type="password" name="pwd" placeholder="Wachtwoord" required>
+			<input type="password" name="pwdrepeat" placeholder="Wachtwoord Herhalen" required>
+			<button type="submit" name="submit">Registreer</button>
+			<a href="#SignIN">Hebt u al een account? Klik dan hier om in te loggen.</a>
+		</div>
 	</form>
 	<?php
 	if (isset($_GET["error"])) {

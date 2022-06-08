@@ -40,7 +40,7 @@ else
 
 ?>
 <form action="./includes/uploadkrabbel.inc.php?profiel=<?php echo $profile;
-                                                        if ($attached) echo "&attached={$attached}" ?>" class="post side-main-content" method="post" enctype="multipart/form-data" id="form">
+                                                        if ($attached) echo "&attached={$attached}" ?>" class="post side-main-content showScroll" method="post" enctype="multipart/form-data" id="form">
   <header>
     <img class="icon-rounded medium" src="<?= $currentUser->avatar ?>" alt="profile img">
     <div>
@@ -72,9 +72,11 @@ else
     if (isset($_GET['krabbelId'])) {
       echo "<input type='hidden' name='krabbelId' value='{$_GET['krabbelId']}'>
       <a href='./includes/deletekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
-        delete
+        Delete
       </a>
-      <input type='submit' name='update' value='update'>";
+      <a href='./includes/updatekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
+        Update
+      </a>";
     } else {
       echo "<input type='submit' name='post' value='post'>";
     }
