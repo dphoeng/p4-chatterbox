@@ -23,7 +23,9 @@ if (mysqli_num_rows($result) < 1) {
   header("Location: ../index.php?content=profiel/{$_SESSION["id"]}");
 }
 $record = mysqli_fetch_assoc($result);
-$decoded = json_decode($record['friends']);
+if ($record['friends']) {
+  $friends = json_decode($record['friends']);
+}
 
 $posts = new Krabbels();
 // $posts->getPosts($profile);
