@@ -75,9 +75,7 @@ else
       <a class='hover medium' href='./includes/deletekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
         Delete
       </a>
-      <a class='hover medium' href='./includes/updatekrabbel.inc.php?krabbelId={$_GET['krabbelId']}&profile={$_GET['profiel']}'>
-        Update
-      </a>";
+      <input type='submit' name='update' value='Update' class='hover medium'>";
     } else {
       echo "<input type='submit' name='post' value='post'>";
     }
