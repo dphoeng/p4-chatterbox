@@ -6,15 +6,16 @@ if (!isset($_SESSION["id"]) || !isset($currentUser)) {
 }
 
 $ids = $_SESSION["id"];
-$decoded = json_decode($currentUser->friends);
 
-if ($decoded)
-{
-	foreach ($decoded->friends as $friend) {
-	  // var_dump($friend);
-	  if ($friend->request_type === 'friends')
-		$ids .= ", " . $friend->id;
-	}
+if ($currentUser->friends) {
+  $decoded = json_decode($currentUser->friends);
+  if ($decoded) {
+    foreach ($decoded->friends as $friend) {
+      // var_dump($friend);
+      if ($friend->request_type === 'friends')
+        $ids .= ", " . $friend->id;
+    }
+  }
 }
 
 $krabbels = new Krabbels();

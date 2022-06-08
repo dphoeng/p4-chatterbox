@@ -152,17 +152,20 @@ $posts = new Krabbels();
       </div>
     </div>
     <div id="2" class="side-scroll-item">
-      <div class="post">
+      <div class="post padding-5">
+        <h5>Age</h5>
+        <?= $record['age']; ?>
+        <h5>Bio</h5>
         <p><?= $record['bio']; ?></p>
       </div>
     </div>
     <div id="3" class="side-scroll-item">
-      <div class="post">
+      <div class="post padding-5">
         <p>f</p>
       </div>
     </div>
     <div id="4" class="side-scroll-item">
-      <div class="post">
+      <div class="post padding-5">
         <p>f</p>
       </div>
     </div>

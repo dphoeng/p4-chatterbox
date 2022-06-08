@@ -762,4 +762,8 @@ dialog {
   overflow: auto;
 }
 
+.padding-5 {
+  padding: 1rem;
+}
+
 /*# sourceMappingURL=style.css.map */
