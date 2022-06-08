@@ -87,7 +87,7 @@ if (mysqli_num_rows($result) < 1) {
     </div>
     <div class="side-scroll-container">
 
-        <div class="side-scroll-item table-container">
+        <div class="side-scroll-item table-container showScroll">
             <table id="1">
                 <caption>Friends</caption>
                 <thead>
@@ -104,7 +104,7 @@ if (mysqli_num_rows($result) < 1) {
                 </tbody>
             </table>
         </div>
-        <div class="side-scroll-item table-container">
+        <div class="side-scroll-item table-container showScroll">
             <table id="2">
                 <caption>Friend requests</caption>
                 <thead>
@@ -123,7 +123,7 @@ if (mysqli_num_rows($result) < 1) {
 
         </div>
         <!-- other users you requested to -->
-        <div class="side-scroll-item table-container">
+        <div class="side-scroll-item table-container showScroll">
             <table id="3">
                 <caption>Requested friends</caption>
                 <thead>

@@ -7,8 +7,7 @@ if (!isset($_SESSION["id"]) || !isset($currentUser)) {
 
 $ids = $_SESSION["id"];
 $decoded = json_decode($currentUser->friends);
-foreach ($decoded->friends as $friend)
-{
+foreach ($decoded->friends as $friend) {
   // var_dump($friend);
   if ($friend->request_type === 'friends')
     $ids .= ", " . $friend->id;
@@ -27,6 +26,6 @@ $krabbels = $krabbels->getPosts($ids, true);
 
 ?>
 
-<div class="posts side-main-content">
+<div class="posts side-main-content showScroll">
   <?= $krabbels ?>
 </div>

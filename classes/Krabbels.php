@@ -26,13 +26,10 @@ class Krabbels
   {
     if ($id === "all")
       $this->db->query("SELECT * FROM `krabbels` WHERE attachedToId IS NULL ORDER BY `postDate` desc");
-    else if ($isArray)
-    {
+    else if ($isArray) {
       $this->db->query("SELECT * FROM `krabbels` WHERE `profileId` in (:id) AND attachedToId IS NULL ORDER BY `postDate` desc");
       $this->db->bind(':id', $id);
-    }
-    else
-    {
+    } else {
       $this->db->query("SELECT * FROM `krabbels` WHERE `profileId` = :id AND attachedToId IS NULL ORDER BY `postDate` desc");
       $this->db->bind(':id', $id);
     }
@@ -45,7 +42,7 @@ class Krabbels
       $user = $this->db->single();
       $image = "";
       if ($krabbel->image) {
-        $image = "<div>
+        $image = "<div class='ml-auto'>
               <img class='full-height' src='{$krabbel->image}' alt='post img'>
                 </div>";
       }
