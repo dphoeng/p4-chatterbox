@@ -5,11 +5,6 @@ ob_start();
 require './includes/connect.php';
 require './includes/functions.inc.php';
 require './config/config.php';
-require './classes/Database.php';
-require './classes/Users.php';
-require './classes/Krabbels.php';
-require './classes/Friend.php';
-
 
 if (isset($_SESSION['id'])) {
   $currentUser = new Users();

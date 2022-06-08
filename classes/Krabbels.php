@@ -22,10 +22,20 @@ class Krabbels
     return $this->db->single();
   }
 
-  public function getPosts($id)
+  public function getPosts($id, $isArray)
   {
-    $this->db->query("SELECT * FROM `krabbels` WHERE `profileId` = :id AND attachedToId IS NULL ORDER BY `postDate` desc");
-    $this->db->bind(':id', $id);
+    if ($id === "all")
+      $this->db->query("SELECT * FROM `krabbels` WHERE attachedToId IS NULL ORDER BY `postDate` desc");
+    else if ($isArray)
+    {
+      $this->db->query("SELECT * FROM `krabbels` WHERE `profileId` in (:id) AND attachedToId IS NULL ORDER BY `postDate` desc");
+      $this->db->bind(':id', $id);
+    }
+    else
+    {
+      $this->db->query("SELECT * FROM `krabbels` WHERE `profileId` = :id AND attachedToId IS NULL ORDER BY `postDate` desc");
+      $this->db->bind(':id', $id);
+    }
     $result = $this->db->resultSet();
     $posts = "";
     foreach ($result as $key => $krabbel) {

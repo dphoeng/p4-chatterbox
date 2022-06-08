@@ -40,7 +40,8 @@ else
 
 ?>
 <form action="./includes/uploadkrabbel.inc.php?profiel=<?php echo $profile;
-                                                        if ($attached) echo "&attached={$attached}" ?>" class="post side-main-content showScroll" method="post" enctype="multipart/form-data" id="form">
+                                                        if ($attached) echo "&attached={$attached}";
+                                                        if (isset($_GET['krabbelId'])) echo "&krabbelId={$_GET['krabbelId']}"; ?>" class="post side-main-content" method="post" enctype="multipart/form-data" id="form">
   <header>
     <img class="icon-rounded medium" src="<?= $currentUser->avatar ?>" alt="profile img">
     <div>

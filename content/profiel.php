@@ -25,10 +25,8 @@ if (mysqli_num_rows($result) < 1) {
 $record = mysqli_fetch_assoc($result);
 $decoded = json_decode($record['friends']);
 
-// testing
-
-$TEST = new Krabbels();
-// $TEST->getPosts($profile);
+$posts = new Krabbels();
+// $posts->getPosts($profile);
 ?>
 
 <main class="profiel-page profiel-background side-main-content" )>
@@ -43,7 +41,7 @@ $TEST = new Krabbels();
   <div class="profiel">
     <div class="info">
       <div class="iconLarge profiel-icon">
-        <img src=".<?= $record['avatar'] ?>" alt="">
+        <img src="<?= $record['avatar'] ?>" alt="">
       </div>
       <div class="profiel-naam">
         <h3><?= $record['nickname'] ?></h3>
@@ -148,7 +146,7 @@ $TEST = new Krabbels();
             </svg>
           </a>
         </div>
-        <?= $TEST->getPosts($profile) ?>
+        <?= $posts->getPosts($profile, false) ?>
       </div>
     </div>
     <div id="2" class="side-scroll-item">
